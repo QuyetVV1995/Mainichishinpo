@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="menu">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img th:src="@{images/logo_small.jpeg}" alt="image not found" style="width:40px;"/>
+
+            </a>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">N5 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Từ vựng </a></li>
+                        <li><a href="#">Kanji </a></li>
+                        <li><a href="#">Ngữ pháp </a></li>
+                        <li><a href="#">Đọc hiểu </a></li>
+                        <li><a href="#">Đề thi </a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">N4 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Từ vựng </a></li>
+                        <li><a href="#">Kanji </a></li>
+                        <li><a href="#">Ngữ pháp </a></li>
+                        <li><a href="#">Đọc hiểu </a></li>
+                        <li><a href="#">Đề thi </a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">N3 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Từ vựng </a></li>
+                        <li><a href="#">Kanji </a></li>
+                        <li><a href="#">Ngữ pháp </a></li>
+                        <li><a href="#">Đọc hiểu </a></li>
+                        <li><a href="#">Đề thi </a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">N2 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Từ vựng </a></li>
+                        <li><a href="#">Kanji </a></li>
+                        <li><a href="#">Ngữ pháp </a></li>
+                        <li><a href="#">Đọc hiểu </a></li>
+                        <li><a href="#">Đề thi </a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">N1 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Từ vựng </a></li>
+                        <li><a href="#">Kanji </a></li>
+                        <li><a href="#">Ngữ pháp </a></li>
+                        <li><a href="#">Đọc hiểu </a></li>
+                        <li><a href="#">Đề thi </a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Tiếng nhật IT</a></li>
+
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">IT <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Java cơ bản</a></li>
+                        <li><a href="#">Spring Boot </a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+<!--            Search-->
+<!--            <form class="navbar-form navbar-left" action="#" th:action="@{/search}" th:object="${searchRequest}" method="post">-->
+<!--                <input type="text" th:field="*{term}" class="form-control mb-3" id="term" placeholder="term to search">-->
+<!--                <button type="submit" class="btn btn-primary">Search</button>-->
+<!--            </form>-->
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+
+            <p class="navbar-brand navbar-right">Chào mừng Username</p>
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="nav navbar-nav navbar-toggler " href="#">
+                    <img th:src="@{images/icon_jp.png}" alt="image not found" style="width:40px;"/>
+                </a>
+                </li>
+                <li> <a class="nav navbar-nav navbar-toggler " href="#">
+                    <img th:src="@{images/icon_vn.png}" alt="image not found" style="width:40px;"/>
+
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

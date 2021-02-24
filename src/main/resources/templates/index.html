@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div th:replace="fragments/header :: header"> </div>
+
+<div th:replace="fragments/menu :: menu"> </div>
+
+<!-- Layout Post -->
+<div class="container-fluid text-center">
+    <div class="row">
+        <div class="col-sm-3">
+
+            <img th:src="@{images/N3.jpeg}" alt="image not found"/>
+            <p> Giới hạn độ dài của content xem lại bài Blog hackathon </p>
+            <p style="color:red;" >tac gia, ngay viet, so view, so comment</p>
+            <a th:href="@{#}" class="card-link">See more...</a>
+        </div>
+        <div class="col-sm-3">
+            <img th:src="@{images/N3.jpeg}" alt="image not found"/>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem sed id ipsam, aperiam ea tempore enim eveniet repellendus eaque vero iusto veniam natus atque, saepe porro harum provident minima? Debitis saepe explicabo ad optio, nobis labore sequi temporibus doloribus sunt?</p>
+            <p style="color:red;">tac gia, ngay viet, so view, so comment</p>
+            <a th:href="@{#}" class="card-link">See more...</a>
+        </div>
+        <div class="col-sm-3 ">
+            <img th:src="@{images/N3.jpeg}" alt="image not found"/>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis, nisi eos dignissimos pariatur non nulla illo molestiae et sapiente eaque labore dolorum, ut accusantium unde totam optio qui rerum quas, quos soluta. Adipisci dolor repellat, tenetur voluptate perferendis autem minima corporis quasi non velit exercitationem, a libero obcaecati, sunt repellendus! Eaque voluptates, eveniet quibusdam nam, corporis dolores eligendi, suscipit accusantium esse deleniti ipsam natus facere vitae! Nostrum vitae amet vel nam facere, dolorum ex magni voluptas asperiores aliquam molestias porro laboriosam fugit eveniet aperiam iste atque fugiat consectetur quasi possimus aspernatur veniam, aliquid consequatur. Id excepturi doloribus ipsam autem minus?</p>
+            <p style="color:red">tac gia, ngay viet, so view, so comment</p>
+            <a th:href="@{#}" class="card-link">See more...</a>
+        </div>
+        <div class="col-sm-3 ">
+            <h4>Tag:</h4>
+            <ul class="w3-ul">
+                <li><a th:href="@{#}"> N5</a></li>
+                <li><a th:href="@{#}"> N4</a> </li>
+                <li><a th:href="@{#}"> N4</a> </li>
+                <li><a th:href="@{#}"> N3</a> </li>
+                <li><a th:href="@{#}"> N2</a></li>
+                <li><a th:href="@{#}"> N1</a> </li>
+                <li><a th:href="@{#}"> Tiếng nhật IT </a></li>
+                <li><a th:href="@{#}"> Java cơ bản </a> </li>
+                <li><a th:href="@{#}"> Spring Boot</a></li>
+            </ul>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-sm-3 ">
+            <img th:src="@{images/N3.jpeg}" alt="image not found"/>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laboriosam sit, nostrum totam eos, nemo voluptates est hic unde voluptatibus omnis magni? Aliquid, placeat! Perferendis voluptatibus reiciendis error iusto vitae atque aperiam velit cum quos, vero, repellat numquam placeat iure sint cupiditate molestiae, in architecto et rerum praesentium. Porro, sapiente!</p>
+            <p style="color:red;">tac gia, ngay viet, so view, so comment</p>
+            <a th:href="@{#}" class="card-link">See more...</a>
+        </div>
+        <div class="col-sm-3">
+            <img th:src="@{images/N3.jpeg}" alt="image not found"/>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero tenetur commodi sint officiis ex? Ratione, repellat dolor. Nemo perspiciatis, iste harum atque ex incidunt natus eligendi molestias illo error, sunt, porro voluptatibus perferendis quidem delectus fuga. Praesentium voluptatem repellat rem, quia, blanditiis animi iste ex saepe libero, quos quae officia.</p>
+            <p style="color:red;">tac gia, ngay viet, so view, so comment</p>
+            <a th:href="@{#}" class="card-link">See more...</a>
+        </div>
+        <div class="col-sm-3">
+            <img th:src="@{images/N3.jpeg}" alt="image not found"/>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum placeat, sit eum quae tempora, nihil ipsam, corporis dolores repudiandae est dolore sint veniam eveniet ducimus! Exercitationem accusamus incidunt qui autem id, eligendi laborum commodi necessitatibus quibusdam animi itaque veritatis ipsum alias nesciunt tempora cum, mollitia pariatur rem tenetur distinctio molestias?</p>
+            <p style="color:red;">tac gia, ngay viet, so view, so comment</p>
+            <a th:href="@{#}" class="card-link">See more...</a>
+        </div>
+        <div class="col-sm-3 ">
+            <h4>Follow:</h4>
+            <ul class="w3-ul">
+                <li><a th:href="@{#}"> Github</a></li>
+                <li><a th:href="@{#}"><i class="fa fa-facebook"></i> Facebook </a> </li>
+                <li><a th:href="@{#}"> Email</a> </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid text-center">
+    <ul class="pagination">
+        <li><a href="#">1</a></li>
+        <li class="active"><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+    </ul>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
