@@ -17,7 +17,6 @@
 <div class="container-fluid text-center">
     <div class="row">
         <div class="col-sm-3">
-
             <img th:src="@{images/N3.jpeg}" alt="image not found"/>
             <p> Giới hạn độ dài của content xem lại bài Blog hackathon </p>
             <p style="color:red;" >tac gia, ngay viet, so view, so comment</p>
@@ -48,35 +47,28 @@
                 <li><a th:href="@{#}"> Java cơ bản </a> </li>
                 <li><a th:href="@{#}"> Spring Boot</a></li>
             </ul>
+
+                <h4>Follow:</h4>
+                <ul class="w3-ul">
+                    <li><a th:href="@{#}"> Github</a></li>
+                    <li><a th:href="@{#}"><i class="fa fa-facebook"></i> Facebook </a> </li>
+                    <li><a th:href="@{#}"> Email</a> </li>
+                </ul>
+
         </div>
     </div>
     <br><br>
+<!--    Get All Post-->
     <div class="row">
-        <div class="col-sm-3 ">
+        <div class="col-sm-3" th:each="post:${listPost}">
             <img th:src="@{images/N3.jpeg}" alt="image not found"/>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laboriosam sit, nostrum totam eos, nemo voluptates est hic unde voluptatibus omnis magni? Aliquid, placeat! Perferendis voluptatibus reiciendis error iusto vitae atque aperiam velit cum quos, vero, repellat numquam placeat iure sint cupiditate molestiae, in architecto et rerum praesentium. Porro, sapiente!</p>
-            <p style="color:red;">tac gia, ngay viet, so view, so comment</p>
-            <a th:href="@{#}" class="card-link">See more...</a>
-        </div>
-        <div class="col-sm-3">
-            <img th:src="@{images/N3.jpeg}" alt="image not found"/>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero tenetur commodi sint officiis ex? Ratione, repellat dolor. Nemo perspiciatis, iste harum atque ex incidunt natus eligendi molestias illo error, sunt, porro voluptatibus perferendis quidem delectus fuga. Praesentium voluptatem repellat rem, quia, blanditiis animi iste ex saepe libero, quos quae officia.</p>
-            <p style="color:red;">tac gia, ngay viet, so view, so comment</p>
-            <a th:href="@{#}" class="card-link">See more...</a>
-        </div>
-        <div class="col-sm-3">
-            <img th:src="@{images/N3.jpeg}" alt="image not found"/>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum placeat, sit eum quae tempora, nihil ipsam, corporis dolores repudiandae est dolore sint veniam eveniet ducimus! Exercitationem accusamus incidunt qui autem id, eligendi laborum commodi necessitatibus quibusdam animi itaque veritatis ipsum alias nesciunt tempora cum, mollitia pariatur rem tenetur distinctio molestias?</p>
-            <p style="color:red;">tac gia, ngay viet, so view, so comment</p>
-            <a th:href="@{#}" class="card-link">See more...</a>
-        </div>
-        <div class="col-sm-3 ">
-            <h4>Follow:</h4>
-            <ul class="w3-ul">
-                <li><a th:href="@{#}"> Github</a></li>
-                <li><a th:href="@{#}"><i class="fa fa-facebook"></i> Facebook </a> </li>
-                <li><a th:href="@{#}"> Email</a> </li>
-            </ul>
+            <p class="card-text" th:text="${#strings.abbreviate(post.content, 100)}">content</p>
+            <span class="card-text" style="font-family:courier;" th:text="${post.user.fullname}">Tac gia</span>
+            <span class="card-text" style="font-family:courier;" th:text="${post.create_at}">Ngay viet</span>
+            <div>
+                <a th:href="@{/post/{id}(id=${post.id})}" class="card-link">See more...</a>
+            </div>
+
         </div>
     </div>
 </div>

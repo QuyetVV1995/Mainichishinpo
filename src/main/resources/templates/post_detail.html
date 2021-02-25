@@ -10,11 +10,19 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 <div th:replace="fragments/header :: header"> </div>
 
 <div th:replace="fragments/menu :: menu"> </div>
 
-<h2>day la trang post detail</h2>
+<div class="container">
+    <h3 th:text="${post.title}"></h3>
+    <em class="me-2" th:text="${#temporals.format(post.create_at, 'dd-MMM-yyyy')}"></em>
+    <ul  th:each="tag : ${tags}">
+            <li><a th:href="${'/tag/' + tag.id}" th:text="${tag.name}">tag link</a></li>
+    </ul>
+    <p th:text="${post.content}" class="mt-2"></p>
+</div>
 
 <div th:replace="fragments/footer :: footer"></div>
 </body>

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -23,15 +24,7 @@ public class Post {
     private String title;
     @Column(length=5000)
     private String content;
-    private LocalDateTime lastUpdate;
-    @PrePersist //Trước khi lưu khi khởi tạo record
-    public void prePersist() {
-        lastUpdate = LocalDateTime.now();
-    }
-    @PreUpdate //Khi cập nhật record
-    public void preUpdate() {
-        lastUpdate = LocalDateTime.now();
-    }
+    private LocalDate create_at;
 
     public Post(String title, String content) {
         this.title = title;
