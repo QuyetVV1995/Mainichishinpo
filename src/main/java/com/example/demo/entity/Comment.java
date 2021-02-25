@@ -33,4 +33,17 @@ public class Comment {
     public Comment(String content) {
         this.content = content;
     }
+
+    // -----------------------
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user; //Mỗi comment phải do một commenter viết
+
+    public void setUser(User user) {
+        user.getComments().add(this);
+        this.user = user;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Post post; //Mỗi comment phải gắn vào một post
+
 }

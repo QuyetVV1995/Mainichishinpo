@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -45,5 +46,37 @@ public class User {
         this.email = email;
         this.password = password;
         this.roles = roles;
+    }
+
+    // --------------------
+    //Một User viết nhiều Post
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    @JoinColumn(name = "user_id")
+    private List<Post> posts = new ArrayList<>();
+    public void addPost(Post post) {
+        posts.add(post);
+        post.setUser(this);
+    }
+
+    public void removePost(Post post) {
+        posts.remove(post);
+        post.setUser(null);
+    }
+
+    //Một User viết nhiều Comment
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    @JoinColumn(name = "user_id")
+    private List<Comment> comments = new ArrayList<>();
+    public void removeComment(Comment comment) {
+        comments.remove(comment);
+        comment.setUser(null);
     }
 }

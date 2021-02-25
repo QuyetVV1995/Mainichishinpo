@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "tag")
 @Table(name = "tag")
@@ -16,4 +18,13 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    public Tag(String name) {
+        this.name = name;
+    }
+
+    // ------------------
+    @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
+    List<Post> posts = new ArrayList<>();
+
+
 }
