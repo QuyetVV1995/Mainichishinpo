@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -77,13 +79,13 @@
 <!--                <button type="submit" class="btn btn-primary">Search</button>-->
 <!--            </form>-->
 
+            <div sec:authorize="isAuthenticated()">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a th:href="@{login}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                </ul>
+            </div>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            </ul>
-
-            <p class="navbar-brand navbar-right">Chào mừng Username</p>
+            <p class="navbar-brand navbar-right">Xin chào <span sec:authentication="principal.username"> User</span></p>
 
 
             <ul class="nav navbar-nav navbar-right">
