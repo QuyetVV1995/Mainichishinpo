@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,7 +41,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        User user = userRepository.findByEmail(email);
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+
+        User user = optionalUser.get();
         if(user == null) {
             throw new UsernameNotFoundException("Invalid email or password.");
         }

@@ -13,10 +13,10 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
-    @DisplayName("find by email")
+    @DisplayName("find user by email")
     void findByEmail(){
         var user = userRepository.findByEmail("bob@gmail.com");
-        assertThat(user).isNotNull();
-        assertThat(user.getEmail()).isEqualTo("bob@gmail.com");
+        assertThat(user).isPresent();
+        assertThat(user.get().getEmail()).isEqualTo("bob@gmail.com");
     }
 }
