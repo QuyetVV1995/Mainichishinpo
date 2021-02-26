@@ -29,6 +29,7 @@ public class PostController {
     @GetMapping("/post/{id}")
     public String showPostByID(@PathVariable("id") long id, Model model, HttpServletRequest request){
         Optional<Post> optionalPost = postService.findById(id);
+        Optional<User> optionalUser = userService.findbyEmail(userService.getUsername());
         if(optionalPost.isPresent()){
             Post post = optionalPost.get();
             model.addAttribute("post", post);
@@ -38,9 +39,10 @@ public class PostController {
             model.addAttribute("comments", comments);
 
             // create new comment
-            Optional<User> optionalUser = userService.findbyEmail(userService.getUsername());
             if(optionalUser.isPresent()){
                 model.addAttribute("commentRequest", new CommentRequest(post.getId()));
+                User user = optionalUser.get();
+                model.addAttribute("user", user);
             } else{
                 model.addAttribute("commentRequest", new CommentRequest());
             }

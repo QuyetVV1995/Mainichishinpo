@@ -30,6 +30,11 @@
             <span  th:text="${comment.content}">Content</span>
             <span>  -- </span>
             <span  th:text="${comment.user.fullname}">Fullname</span>
+
+<!--            Delete Comment-->
+            <span th:if="${comment.user.email} == ${user.email}">
+                <a th:href="@{~/comment/delete/{id}(id=${comment.id})}"> Delete </a>
+            </span>
         </div>
     </div>
 </div>
