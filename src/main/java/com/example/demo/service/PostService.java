@@ -15,4 +15,6 @@ public interface PostService {
     public Optional<Post> findById(long id);
 
     public void addComment(CommentRequest commentRequest, Long user_id) throws PostException;
+    public List<Post> searchPost(String term, int limit, int offset);
+    public void reindexFullText();
 }

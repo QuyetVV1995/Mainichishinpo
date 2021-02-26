@@ -3,10 +3,11 @@ package com.example.demo.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,13 +18,19 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Indexed //Thêm annotation này báo cho Hibernate Search đánh chỉ mục bảng này
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @FullTextField //Đánh chỉ mục full text
     private String title;
+
+    @FullTextField //Đánh chỉ mục full text
     @Column(length=5000)
     private String content;
+
     private LocalDate create_at;
 
     public Post(String title, String content) {

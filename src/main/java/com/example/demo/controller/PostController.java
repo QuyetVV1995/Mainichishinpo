@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.controller.request.CommentRequest;
+import com.example.demo.controller.request.SearchRequest;
 import com.example.demo.entity.Comment;
 import com.example.demo.entity.Post;
 import com.example.demo.entity.Tag;
@@ -30,6 +31,7 @@ public class PostController {
     public String showPostByID(@PathVariable("id") long id, Model model, HttpServletRequest request){
         Optional<Post> optionalPost = postService.findById(id);
         Optional<User> optionalUser = userService.findbyEmail(userService.getUsername());
+        model.addAttribute("searchRequest", new SearchRequest());
         if(optionalPost.isPresent()){
             Post post = optionalPost.get();
             model.addAttribute("post", post);
