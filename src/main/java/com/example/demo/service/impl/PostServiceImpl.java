@@ -87,4 +87,10 @@ public class PostServiceImpl implements PostService {
     public Page<Post> findAllPaging(int page, int pageSize) {
         return postRepository.findAll(PageRequest.of(page, pageSize)); // Bổ xung pagination vào đây !
     }
+
+    @Override
+    public List<Post> getAllPostsByUserID(long userId) {
+        return postRepository.findByUserId(userId);
+    }
+
 }

@@ -31,7 +31,7 @@ public class CommentController {
             postService.addComment(commentRequest, user.getId());
             return "redirect:/post/" + commentRequest.getPost_id();
         }else{
-            return "index";
+            return "error";
         }
     }
 

@@ -50,8 +50,26 @@ public class PostController {
             }
             return "post_detail";
         }else {
-            return "index";
+            return "error";
         }
+    }
+
+    @GetMapping("/posts/{id}")
+    public String getAllPostOfUser(@PathVariable("id") long id, Model model){
+        Optional<User> optionalUser = userService.findById(id);
+        model.addAttribute("searchRequest", new SearchRequest());
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            model.addAttribute("user", user);
+            List<Post> postList = postService.getAllPostsByUserID(user.getId());
+            System.out.println(postList.size());
+            model.addAttribute("posts", postList);
+            return "postsOfUser";
+        }else {
+            return "error";
+        }
+
+
 
     }
 

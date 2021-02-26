@@ -19,4 +19,6 @@ public interface PostService {
     public List<Post> searchPost(String term, int limit, int offset);
     public void reindexFullText();
     public Page<Post> findAllPaging(int page, int pageSize);
+    public List<Post> getAllPostsByUserID(long user_id);
+
 }

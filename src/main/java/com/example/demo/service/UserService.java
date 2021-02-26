@@ -11,4 +11,6 @@ public interface UserService extends UserDetailsService {
     Optional<User> findbyEmail(String email);
 
     String getUsername();
+
+    Optional<User> findById(long id);
 }

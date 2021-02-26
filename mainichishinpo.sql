@@ -87,22 +87,23 @@ insert into post_tag(tag_id, post_id) values (11,1);
 insert into post_tag(tag_id, post_id) values (12,1);
 insert into post_tag(tag_id, post_id) values (13,1);
 
-insert into post_tag(tag_id, post_id) values (2,2);
-insert into post_tag(tag_id, post_id) values (9,2);
-insert into post_tag(tag_id, post_id) values (10,2);
-insert into post_tag(tag_id, post_id) values (11,2);
-insert into post_tag(tag_id, post_id) values (12,2);
-insert into post_tag(tag_id, post_id) values (13,2);
+-- insert into post_tag(tag_id, post_id) values (2,2);
+-- insert into post_tag(tag_id, post_id) values (9,2);
+-- insert into post_tag(tag_id, post_id) values (10,2);
+-- insert into post_tag(tag_id, post_id) values (11,2);
+-- insert into post_tag(tag_id, post_id) values (12,2);
+-- insert into post_tag(tag_id, post_id) values (13,2);
 
-insert into post_tag(tag_id, post_id) values (3,3);
-insert into post_tag(tag_id, post_id) values (9,3);
-insert into post_tag(tag_id, post_id) values (10,3);
-insert into post_tag(tag_id, post_id) values (11,3);
-insert into post_tag(tag_id, post_id) values (12,3);
-insert into post_tag(tag_id, post_id) values (13,3);
+-- insert into post_tag(tag_id, post_id) values (3,3);
+-- insert into post_tag(tag_id, post_id) values (9,3);
+-- insert into post_tag(tag_id, post_id) values (10,3);
+-- insert into post_tag(tag_id, post_id) values (11,3);
+-- insert into post_tag(tag_id, post_id) values (12,3);
+-- insert into post_tag(tag_id, post_id) values (13,3);
 
 
-insert into comment (content, post_id, user_id) values('comment so 1', 1, 1);
-insert into comment (content, post_id, user_id) values('comment so 2', 1, 2);
-insert into comment (content, post_id, user_id) values('comment so 3', 1, 3);
+insert into comment (content, post_id, user_id) values('comment so 1', 2, 1);
+insert into comment (content, post_id, user_id) values('comment so 2', 3, 2);
+insert into comment (content, post_id, user_id) values('comment so 3', 4, 3);
+
 
