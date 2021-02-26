@@ -14,6 +14,8 @@ import org.hibernate.search.mapper.orm.Search;
 import org.hibernate.search.mapper.orm.massindexing.MassIndexer;
 import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -79,5 +81,10 @@ public class PostServiceImpl implements PostService {
                 .threadsToLoadObjects(5)
                 .cacheMode(CacheMode.IGNORE);
         indexer.start();
+    }
+
+    @Override
+    public Page<Post> findAllPaging(int page, int pageSize) {
+        return postRepository.findAll(PageRequest.of(page, pageSize)); // Bổ xung pagination vào đây !
     }
 }

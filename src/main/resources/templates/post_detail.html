@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -33,9 +34,14 @@
             <span  th:text="${comment.user.fullname}">Fullname</span>
 
 <!--            Delete Comment-->
-            <span th:if="${comment.user.email} == ${user.email}">
-                <a th:href="@{~/comment/delete/{id}(id=${comment.id})}"> Delete </a>
+            <span sec:authorize="isAuthenticated()">
+                <span th:if="${comment.user.email} == ${user.email}">
+                     <a th:href="@{~/comment/delete/{id}(id=${comment.id})}">
+                         <i class="fa fa-trash" aria-hidden="true"></i>
+                     </a>
+                </span>
             </span>
+
         </div>
     </div>
 </div>

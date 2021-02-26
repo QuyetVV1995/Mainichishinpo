@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/df2eef8f6b.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div th:replace="fragments/header :: header"> </div>
@@ -66,6 +67,10 @@
             <p class="card-text" th:text="${#strings.abbreviate(post.content, 100)}">content</p>
             <span class="card-text" style="font-family:courier;" th:text="${post.user.fullname}">Tac gia</span>
             <span class="card-text" style="font-family:courier;" th:text="${post.create_at}">Ngay viet</span>
+            <div th:if="${post.comments.size > 0}" style="display:inline">
+                <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                <span class="me-2" th:text="${post.comments.size}"></span>
+            </div>
             <div>
                 <a th:href="@{/post/{id}(id=${post.id})}" class="card-link">See more...</a>
             </div>
@@ -75,13 +80,11 @@
 </div>
 
 <div class="container-fluid text-center">
-    <ul class="pagination">
-        <li><a href="#">1</a></li>
-        <li class="active"><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-    </ul>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" th:each="paging : ${pagings}" th:classappend="${paging.active}"><a class="page-link" th:href="${'/' + paging.index}" th:text="${paging.title}"></a></li>
+        </ul>
+    </nav>
 </div>
 
 <div th:replace="fragments/footer :: footer"></div>
