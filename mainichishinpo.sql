@@ -24,6 +24,7 @@ create table comment(
     user_id bigint not null
 );
 
+
 create table post(
     id bigint not null primary key auto_increment,
     title varchar(255),
@@ -99,4 +100,9 @@ insert into post_tag(tag_id, post_id) values (10,3);
 insert into post_tag(tag_id, post_id) values (11,3);
 insert into post_tag(tag_id, post_id) values (12,3);
 insert into post_tag(tag_id, post_id) values (13,3);
+
+
+insert into comment (content, post_id, user_id) values('comment so 1', 1, 1);
+insert into comment (content, post_id, user_id) values('comment so 2', 1, 2);
+insert into comment (content, post_id, user_id) values('comment so 3', 1, 3);
 

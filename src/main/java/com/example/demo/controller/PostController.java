@@ -1,9 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.controller.request.CommentRequest;
 import com.example.demo.entity.Comment;
 import com.example.demo.entity.Post;
 import com.example.demo.entity.Tag;
+import com.example.demo.entity.User;
 import com.example.demo.service.PostService;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +23,8 @@ public class PostController {
 
     @Autowired
     private PostService postService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/post/{id}")
     public String showPostByID(@PathVariable("id") long id, Model model, HttpServletRequest request){
@@ -31,6 +36,14 @@ public class PostController {
             model.addAttribute("tags", tags);
             List<Comment> comments = post.getComments();
             model.addAttribute("comments", comments);
+
+            // create new comment
+            Optional<User> optionalUser = userService.findbyEmail(userService.getUsername());
+            if(optionalUser.isPresent()){
+                model.addAttribute("commentRequest", new CommentRequest(post.getId()));
+            } else{
+                model.addAttribute("commentRequest", new CommentRequest());
+            }
             return "post_detail";
         }else {
             return "index";

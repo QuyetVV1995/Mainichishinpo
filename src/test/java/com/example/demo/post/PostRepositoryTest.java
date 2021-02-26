@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.post;
 
 import com.example.demo.entity.Post;
 import com.example.demo.entity.User;

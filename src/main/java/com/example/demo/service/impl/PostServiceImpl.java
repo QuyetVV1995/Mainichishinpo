@@ -1,7 +1,13 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.controller.request.CommentRequest;
+import com.example.demo.entity.Comment;
 import com.example.demo.entity.Post;
+import com.example.demo.entity.User;
+import com.example.demo.exception.PostException;
+import com.example.demo.repository.CommentRepository;
 import com.example.demo.repository.PostRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +20,10 @@ public class PostServiceImpl implements PostService {
 
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private CommentRepository commentRepository;
 
     @Override
     public List<Post> findAll() {
@@ -23,5 +33,24 @@ public class PostServiceImpl implements PostService {
     @Override
     public Optional<Post> findById(long id) {
         return postRepository.findById(id);
+    }
+
+    @Override
+    public void addComment(CommentRequest commentRequest, Long user_id) throws PostException {
+        Optional<Post> optionalPost = postRepository.findById(commentRequest.getPost_id());
+        Optional<User> optionalUser =userRepository.findById(user_id);
+        if(optionalPost.isPresent() && optionalUser.isPresent()){
+            Post post = optionalPost.get();
+
+            Comment comment = new Comment();
+            comment.setContent(commentRequest.getContent());
+            comment.setUser(optionalUser.get());
+            comment.setPost(post);
+            commentRepository.save(comment);
+            post.addComment(comment);
+            postRepository.saveAndFlush(post);
+        }else{
+            throw new PostException("Post or User is missing");
+        }
     }
 }
