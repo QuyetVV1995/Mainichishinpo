@@ -17,11 +17,17 @@
 
 <div class="container">
     <h3 th:text="${post.title}"></h3>
+
     <em class="me-2" th:text="${#temporals.format(post.create_at, 'dd-MMM-yyyy')}"></em>
+    <!--    Tag-->
     <ul  th:each="tag : ${tags}">
             <li><a th:href="${'/tag/' + tag.id}" th:text="${tag.name}">tag link</a></li>
     </ul>
     <p th:text="${post.content}" class="mt-2"></p>
+<!--    Comment-->
+    <ul  th:each="comment : ${comments}">
+        <li th:text="${comment.content}">comment</li>
+    </ul>
 </div>
 
 <div th:replace="fragments/footer :: footer"></div>
