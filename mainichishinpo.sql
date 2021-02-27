@@ -55,55 +55,60 @@ alter table post_tag add constraint FKc2auetuvsec0k566l0eyvr9cs foreign key (pos
 
 -- --password:123
 insert into user(fullname, email, password) values ('QuyetVV', 'quyeta2ubqn@gmail.com','$2a$10$GBCQjLA5BstflUfAlS/NUecsupn/5M6/Zshea3d9YJiRoAStcJ5EC');
+-- --password:123
+insert into user(fullname, email, password) values ('abc', 'abc@gmail.com','$2a$10$GBCQjLA5BstflUfAlS/NUecsupn/5M6/Zshea3d9YJiRoAStcJ5EC');
+
 
 insert into role (name) values ('ROLE_USER');
 insert into role (name) values ('ROLE_ADMIN');
 
 insert into users_roles(user_id, role_id) values (1,2);
+insert into users_roles(user_id, role_id) values (2,1);
 
 insert into tag(name) values('N1');
 insert into tag(name) values('N2');
 insert into tag(name) values('N3');
 insert into tag(name) values('N4');
 insert into tag(name) values('N5');
-insert into tag(name) values('Tiếng nhật IT');
-insert into tag(name) values('Java cơ bản');
-insert into tag(name) values('Spring Boot');
-insert into tag(name) values('Từ vựng ');
+insert into tag(name) values('IT_Japanese');
+insert into tag(name) values('Java_Basic');
+insert into tag(name) values('Spring_Boot');
+insert into tag(name) values('Vocabulary');
 insert into tag(name) values('Kanji ');
-insert into tag(name) values('Ngữ pháp ');
-insert into tag(name) values('Đọc hiểu');
-insert into tag(name) values('Đề thi');
+insert into tag(name) values('Grammar');
+insert into tag(name) values('Reading');
+insert into tag(name) values('Exam');
 
 insert into post(title, content, user_id, create_at) values ('Tieu de bai viet so 1', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem sed id ipsam, aperiam ea tempore enim eveniet repellendus eaque vero iusto veniam natus atque, saepe porro harum provident minima? Debitis saepe explicabo ad optio, nobis labore sequi temporibus doloribus sunt?', 1, now());
 insert into post(title, content, user_id, create_at) values ('Tieu de bai viet so 2', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem sed id ipsam, aperiam ea tempore enim eveniet repellendus eaque vero iusto veniam natus atque, saepe porro harum provident minima? Debitis saepe explicabo ad optio, nobis labore sequi temporibus doloribus sunt?', 1, now());
 insert into post(title, content, user_id, create_at) values ('Tieu de bai viet so 3', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem sed id ipsam, aperiam ea tempore enim eveniet repellendus eaque vero iusto veniam natus atque, saepe porro harum provident minima? Debitis saepe explicabo ad optio, nobis labore sequi temporibus doloribus sunt?', 1, now());
 insert into post(title, content, user_id, create_at) values ('Tieu de bai viet so 4', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem sed id ipsam, aperiam ea tempore enim eveniet repellendus eaque vero iusto veniam natus atque, saepe porro harum provident minima? Debitis saepe explicabo ad optio, nobis labore sequi temporibus doloribus sunt?', 1, now());
+insert into post(title, content, user_id, create_at) values ('Tieu de bai viet so 6', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem sed id ipsam, aperiam ea tempore enim eveniet repellendus eaque vero iusto veniam natus atque, saepe porro harum provident minima? Debitis saepe explicabo ad optio, nobis labore sequi temporibus doloribus sunt?', 1, now());
 
-insert into post_tag(tag_id, post_id) values (1,1);
-insert into post_tag(tag_id, post_id) values (9,1);
-insert into post_tag(tag_id, post_id) values (10,1);
-insert into post_tag(tag_id, post_id) values (11,1);
-insert into post_tag(tag_id, post_id) values (12,1);
-insert into post_tag(tag_id, post_id) values (13,1);
-
--- insert into post_tag(tag_id, post_id) values (2,2);
--- insert into post_tag(tag_id, post_id) values (9,2);
--- insert into post_tag(tag_id, post_id) values (10,2);
--- insert into post_tag(tag_id, post_id) values (11,2);
--- insert into post_tag(tag_id, post_id) values (12,2);
--- insert into post_tag(tag_id, post_id) values (13,2);
-
--- insert into post_tag(tag_id, post_id) values (3,3);
--- insert into post_tag(tag_id, post_id) values (9,3);
--- insert into post_tag(tag_id, post_id) values (10,3);
--- insert into post_tag(tag_id, post_id) values (11,3);
--- insert into post_tag(tag_id, post_id) values (12,3);
--- insert into post_tag(tag_id, post_id) values (13,3);
+insert into post_tag(tag_id, post_id) values (5,1);
+insert into post_tag(tag_id, post_id) values (4,1);
+insert into post_tag(tag_id, post_id) values (2,2);
+insert into post_tag(tag_id, post_id) values (10,6);
+insert into post_tag(tag_id, post_id) values (3,6);
 
 
 insert into comment (content, post_id, user_id) values('comment so 1', 2, 1);
 insert into comment (content, post_id, user_id) values('comment so 2', 3, 2);
-insert into comment (content, post_id, user_id) values('comment so 3', 4, 3);
+insert into comment (content, post_id, user_id) values('comment so 3', 4, 2);
 
 
+select * from post_tag inner join post on post_tag.post_id = post.id where post_tag.tag_id = 10 or post_tag.tag_id = 1 ;
+
+select * from post, post_tag, tag where post.id = post_tag.id and post_tag.tag_id = tag.id and tag.id = 10;
+
+SELECT * FROM post INNER JOIN tag ON  tag.name = 'Kanji';
+
+-- Lay tat ca bai viet N5
+SELECT * FROM post inner join post_tag on post_tag.tag_id = 5 ;
+use mainichishinpo;
+
+-- Lay bai viet N3 Kanji
+SELECT * FROM  post inner join post_tag on post_tag.tag_id = 3 where post.id = post_tag.post_id and post_tag.tag_id = 10 ;
+
+
+SELECT * FROM  post inner join post_tag on post_tag.tag_id = 3 where post.id = post_tag.post_id;

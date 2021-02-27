@@ -3,10 +3,12 @@ package com.example.demo.service.impl;
 import com.example.demo.controller.request.CommentRequest;
 import com.example.demo.entity.Comment;
 import com.example.demo.entity.Post;
+import com.example.demo.entity.Tag;
 import com.example.demo.entity.User;
 import com.example.demo.exception.PostException;
 import com.example.demo.repository.CommentRepository;
 import com.example.demo.repository.PostRepository;
+import com.example.demo.repository.TagRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.PostService;
 import org.hibernate.CacheMode;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +35,8 @@ public class PostServiceImpl implements PostService {
     private UserRepository userRepository;
     @Autowired
     private CommentRepository commentRepository;
+    @Autowired
+    private TagRepository tagRepository;
     @PersistenceContext
     private EntityManager em;
 
@@ -91,6 +96,106 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> getAllPostsByUserID(long userId) {
         return postRepository.findByUserId(userId);
+    }
+
+    @Override
+    public List<Post> getAllPostN5ByTagId(long tag_id) {
+        List<Post> list = postRepository.getAllPostN5ByTagId();
+        List<Post> postList = new ArrayList<>();
+        Tag tag = tagRepository.findById(tag_id).get();
+        System.out.println(tag.getName());
+
+        // Loai bo cac phan tu trung nhau
+        for (Post post : list){
+            if(!postList.contains(post)){
+                for(Tag tag_element : post.getTags()){
+                    if(tag == tag_element){
+                        postList.add(post);
+                    }
+                }
+            }
+        }
+        return postList;
+    }
+
+    @Override
+    public List<Post> getAllPostN4ByTagId(long tag_id) {
+        List<Post> list = postRepository.getAllPostN4ByTagId();
+        List<Post> postList = new ArrayList<>();
+        Tag tag = tagRepository.findById(tag_id).get();
+        System.out.println(tag.getName());
+
+        // Loai bo cac phan tu trung nhau
+        for (Post post : list){
+            if(!postList.contains(post)){
+                for(Tag tag_element : post.getTags()){
+                    if(tag == tag_element){
+                        postList.add(post);
+                    }
+                }
+            }
+        }
+        return postList;
+    }
+
+    @Override
+    public List<Post> getAllPostN3ByTagId(long tag_id){
+        List<Post> list = postRepository.getAllPostN3ByTagId();
+        List<Post> postList = new ArrayList<>();
+        Tag tag = tagRepository.findById(tag_id).get();
+        System.out.println(tag.getName());
+
+        // Loai bo cac phan tu trung nhau
+        for (Post post : list){
+            if(!postList.contains(post)){
+                for(Tag tag_element : post.getTags()){
+                    if(tag == tag_element){
+                        postList.add(post);
+                    }
+                }
+            }
+        }
+        return postList;
+    }
+
+    @Override
+    public List<Post> getAllPostN2ByTagId(long tag_id) {
+        List<Post> list = postRepository.getAllPostN2ByTagId();
+        List<Post> postList = new ArrayList<>();
+        Tag tag = tagRepository.findById(tag_id).get();
+        System.out.println(tag.getName());
+
+        // Loai bo cac phan tu trung nhau
+        for (Post post : list){
+            if(!postList.contains(post)){
+                for(Tag tag_element : post.getTags()){
+                    if(tag == tag_element){
+                        postList.add(post);
+                    }
+                }
+            }
+        }
+        return postList;
+    }
+
+    @Override
+    public List<Post> getAllPostN1ByTagId(long tag_id) {
+        List<Post> list = postRepository.getAllPostN1ByTagId();
+        List<Post> postList = new ArrayList<>();
+        Tag tag = tagRepository.findById(tag_id).get();
+        System.out.println(tag.getName());
+
+        // Loai bo cac phan tu trung nhau
+        for (Post post : list){
+            if(!postList.contains(post)){
+                for(Tag tag_element : post.getTags()){
+                    if(tag == tag_element){
+                        postList.add(post);
+                    }
+                }
+            }
+        }
+        return postList;
     }
 
 }
