@@ -10,6 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/df2eef8f6b.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 <div th:replace="/../fragments/header :: header"> </div>
@@ -18,8 +19,8 @@
         <a class="navbar-brand">
             <img th:src="@{~/images/logo_small.jpeg}" alt="image not found" style="width:40px;"/>
         </a>
-        <a class="navbar-brand" th:href="@{#}"> User</a>
-        <a class="navbar-brand" th:href="@{#}"> Post</a>
+        <a class="navbar-brand" th:href="@{#}"> Manage User</a>
+        <a class="navbar-brand" th:href="@{#}"> Manage Post</a>
         <form class="navbar-form navbar-left" action="#" th:action="@{/search}" th:object="${searchRequest}" method="post">
             <input type="text" th:field="*{term}" class="form-control mb-3" id="term" placeholder="term to search">
             <button type="submit" class="btn btn-primary">Search</button>
@@ -81,7 +82,10 @@
             </table>
         </div>
         <div class="col-sm-3">
-            bbb
+            <div>
+                <script type="text/javascript" src="https://free-hit-counters.net/count/8a5g"></script><br>
+                <a href='https://www.symptoma.ro/'>Informații despre examenul clinic</a> <script type='text/javascript' src='https://whomania.com/ctr?id=2d7ea9c7184f58e8fc8d2c59654027470315bec0'></script>
+            </div>
         </div>
     </div>
 </div>
@@ -90,8 +94,10 @@
     <div class="row">
         <div class="col-md-6">
             <div id="chart"></div>
+
         </div>
     </div>
+
 </div>
 
 <!-- you need to include the shieldui css and js assets in order for the charts to work -->
@@ -105,6 +111,9 @@
     var N3 = [[${totalN3}]];
     var N2 = [[${totalN2}]];
     var N1 = [[${totalN1}]];
+    var totalITJP = [[${totalITJP}]];
+    var totalJava = [[${totalJava}]];
+    var totalSpring = [[${totalSpring}]];
 
         $("#chart").shieldChart({
             theme: "bootstrap",
@@ -123,12 +132,12 @@
                 ]
             },
             primaryHeader: {
-                text: "Số lượng bài viết của mỗi thể loại "
+                text: ""
             },
             dataSeries: [{
                 seriesType: "bar",
-                collectionAlias: "Gold Medals",
-                data: [N5,N4,N3,N2,N1,6,7,8]
+                collectionAlias: "Số lượng bài viết của mỗi thể loại",
+                data: [N5,N4,N3,N2,N1,totalITJP,totalJava,totalSpring]
             }]
         });
     });

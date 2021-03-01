@@ -105,23 +105,23 @@ public class PostServiceImpl implements PostService {
         switch (category){
             case "N1":     // N1
                 postList = postRepository.getAllPostCategoryByTagId(tag_id);
-                postResult = removeElementDuplicate(postList, 1);
+                postResult = removeElementDuplicateWithTagId(postList, 1);
                 break;
             case "N2":     // N2
                 postList = postRepository.getAllPostCategoryByTagId(tag_id);
-                postResult = removeElementDuplicate(postList, 2);
+                postResult = removeElementDuplicateWithTagId(postList, 2);
                 break;
             case "N3":     // N3
                 postList = postRepository.getAllPostCategoryByTagId(tag_id);
-                postResult = removeElementDuplicate(postList, 3);
+                postResult = removeElementDuplicateWithTagId(postList, 3);
                 break;
             case "N4":     // N4
                 postList = postRepository.getAllPostCategoryByTagId(tag_id);
-                postResult = removeElementDuplicate(postList, 4);
+                postResult = removeElementDuplicateWithTagId(postList, 4);
                 break;
             case "N5":     // N5
                 postList = postRepository.getAllPostCategoryByTagId(tag_id);;
-                postResult = removeElementDuplicate(postList, 5);
+                postResult = removeElementDuplicateWithTagId(postList, 5);
                 break;
             case "it-japanese":     // IT Japanese
             case "java-basic":     // Java Basic
@@ -135,7 +135,46 @@ public class PostServiceImpl implements PostService {
         return postResult;
     }
 
-    public List<Post> removeElementDuplicate(List<Post> posts, long tag_id){
+    @Override
+    public List<Post> totalPostofCategory(String category) {
+        List<Post> postList = new ArrayList<>();
+        switch (category) {
+            case "N1":     // N1
+                postList = postRepository.totalPostOfCategory(1);
+                postList = removeElementDuplicate(postList);
+                break;
+            case "N2":     // N2
+                postList = postRepository.totalPostOfCategory(2);
+                postList = removeElementDuplicate(postList);
+                break;
+            case "N3":     // N3
+                postList = postRepository.totalPostOfCategory(3);
+                postList = removeElementDuplicate(postList);
+                break;
+            case "N4":     // N4
+                postList = postRepository.totalPostOfCategory(4);
+                postList = removeElementDuplicate(postList);
+                break;
+            case "N5":     // N5
+                postList = postRepository.totalPostOfCategory(5);
+                postList = removeElementDuplicate(postList);
+                break;
+            case "it-japanese":
+                postList = postRepository.totalPostOfCategory(6);
+                break;
+            case "java-basic":
+                postList = postRepository.totalPostOfCategory(7);
+                break;
+            case "spring-boot":
+                postList = postRepository.totalPostOfCategory(8);
+                break;
+
+
+        }
+        return postList;
+    }
+
+    public List<Post> removeElementDuplicateWithTagId(List<Post> posts, long tag_id){
         Tag tag = tagRepository.findById(tag_id).get();
         List<Post> post = new ArrayList<>();
         for (Post post_element: posts){
@@ -147,6 +186,16 @@ public class PostServiceImpl implements PostService {
                 }
             }
         }
+        return post;
+    }
+
+    public List<Post> removeElementDuplicate(List<Post> posts){
+        List<Post> post = new ArrayList<>();
+        for (Post post_element: posts){
+            if(!post.contains(post_element)){
+                    post.add(post_element);
+                }
+            }
         return post;
     }
 

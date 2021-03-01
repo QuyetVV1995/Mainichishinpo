@@ -23,4 +23,5 @@ public interface PostService {
 
 
     List<Post> getAllPostByTagId(String category, long tag_id);
+    List<Post> totalPostofCategory(String category);
 }

@@ -33,4 +33,11 @@ public interface PostRepository extends JpaRepository<Post, Long> {
      * */
     @Query(value = "SELECT * FROM post, post_tag, tag WHERE tag.id = :tag_id AND post_tag.tag_id = tag.id AND post_tag.post_id = post.id;", nativeQuery = true)
     List<Post> getAllPostCategoryByTagId(@Param("tag_id") long tag_id);
+
+    /*
+     * @Param:
+     *   - tag_id : 1,2,3,4,5,6,7,8 - N1, N2, N3, N4,N5, it japan, java basic, spring boot
+     * */
+    @Query(value = "SELECT * FROM post, post_tag, tag WHERE tag.id = :tag_id AND post_tag.tag_id = tag.id AND post_tag.post_id = post.id;", nativeQuery = true)
+    List<Post> totalPostOfCategory(@Param("tag_id") long tag_id);
 }

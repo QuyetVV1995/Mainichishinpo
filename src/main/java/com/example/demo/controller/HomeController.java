@@ -45,23 +45,23 @@ public class HomeController {
 
                 List<User> userList = userService.findAll();
                 model.addAttribute("userList", userList);
+                long totalN1 = postService.totalPostofCategory("N1").size();
+                long totalN2 = postService.totalPostofCategory("N2").size();
+                long totalN3 = postService.totalPostofCategory("N3").size();
+                long totalN4 = postService.totalPostofCategory("N4").size();
+                long totalN5 = postService.totalPostofCategory("N5").size();
+                long totalITJP = postService.totalPostofCategory("it-japanese").size();
+                long totalJava = postService.totalPostofCategory("java-basic").size();
+                long totalSpring = postService.totalPostofCategory("spring-boot").size();
 
-
-//                long totalN1 = postService.getAllPostN1ByTagId(1).size();
-//                long totalN2 = postService.getAllPostN2ByTagId(2).size();
-//                long totalN3 = postService.getAllPostN3ByTagId(3).size();
-//                long totalN4 = postService.getAllPostN4ByTagId(4).size();
-//                long totalN5 = postService.getAllPostN5ByTagId(5).size();
-//                long total_ITJapan = postService.getAllPostN5ByTagId(6).size();
-//                long total_JavaBasic = postService.getAllPostN5ByTagId(7).size();
-//                long total_SpringBoot = postService.getAllPostN5ByTagId(8).size();
-
-//                model.addAttribute("totalN5", totalN5);
-//                model.addAttribute("totalN4", totalN4);
-//                model.addAttribute("totalN3", totalN3);
-//                model.addAttribute("totalN2", totalN2);
-//                model.addAttribute("totalN1", totalN1);
-
+                model.addAttribute("totalN5", totalN5);
+                model.addAttribute("totalN4", totalN4);
+                model.addAttribute("totalN3", totalN3);
+                model.addAttribute("totalN2", totalN2);
+                model.addAttribute("totalN1", totalN1);
+                model.addAttribute("totalITJP", totalITJP);
+                model.addAttribute("totalJava", totalJava);
+                model.addAttribute("totalSpring", totalSpring);
 
             }
            return "admin/index";
