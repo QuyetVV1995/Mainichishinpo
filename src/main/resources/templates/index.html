@@ -10,6 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/df2eef8f6b.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 <div th:replace="fragments/header :: header"> </div>
@@ -18,69 +19,21 @@
 <!-- Layout Post -->
 <div class="container-fluid text-center">
     <div class="row">
-        <div class="col-sm-3">
-            <img th:src="@{images/N3.jpeg}" alt="image not found"/>
-            <p> Giới hạn độ dài của content xem lại bài Blog hackathon </p>
-            <p style="color:red;" >tac gia, ngay viet, so view, so comment</p>
-            <a th:href="@{#}" class="card-link">See more...</a>
-        </div>
-        <div class="col-sm-3">
-            <img th:src="@{images/N3.jpeg}" alt="image not found"/>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem sed id ipsam, aperiam ea tempore enim eveniet repellendus eaque vero iusto veniam natus atque, saepe porro harum provident minima? Debitis saepe explicabo ad optio, nobis labore sequi temporibus doloribus sunt?</p>
-            <p style="color:red;">tac gia, ngay viet, so view, so comment</p>
-            <a th:href="@{#}" class="card-link">See more...</a>
-        </div>
-        <div class="col-sm-3 ">
-            <img th:src="@{images/N3.jpeg}" alt="image not found"/>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis, nisi eos dignissimos pariatur non nulla illo molestiae et sapiente eaque labore dolorum, ut accusantium unde totam optio qui rerum quas, quos soluta. Adipisci dolor repellat, tenetur voluptate perferendis autem minima corporis quasi non velit exercitationem, a libero obcaecati, sunt repellendus! Eaque voluptates, eveniet quibusdam nam, corporis dolores eligendi, suscipit accusantium esse deleniti ipsam natus facere vitae! Nostrum vitae amet vel nam facere, dolorum ex magni voluptas asperiores aliquam molestias porro laboriosam fugit eveniet aperiam iste atque fugiat consectetur quasi possimus aspernatur veniam, aliquid consequatur. Id excepturi doloribus ipsam autem minus?</p>
-            <p style="color:red">tac gia, ngay viet, so view, so comment</p>
-            <a th:href="@{#}" class="card-link">See more...</a>
-        </div>
-        <div class="col-sm-3 ">
-            <h4>Tag:</h4>
-            <ul class="w3-ul">
-                <li><a th:href="@{/tag/5}"> N5</a></li>
-                <li><a th:href="@{/tag/4}"> N4</a></li>
-                <li><a th:href="@{/tag/3}"> N3</a></li>
-                <li><a th:href="@{/tag/2}"> N2</a></li>
-                <li><a th:href="@{/tag/1}"> N1</a></li>
-                <li><a th:href="@{/tag/6}"> Tiếng nhật IT</a></li>
-                <li><a th:href="@{/tag/7}"> Java cơ bản</a></li>
-                <li><a th:href="@{/tag/8}"> Spring Boot</a></li>
-                <li><a th:href="@{/tag/9}"> Từ vựng</a></li>
-                <li><a th:href="@{/tag/10}"> Kanji </a></li>
-                <li><a th:href="@{/tag/11}"> Ngữ pháp</a></li>
-                <li><a th:href="@{/tag/12}"> Đọc hiểu</a></li>
-                <li><a th:href="@{/tag/13}"> Đề thi</a></li>
-            </ul>
-
-                <h4>Follow:</h4>
-                <ul class="w3-ul">
-                    <li><a th:href="@{#}"> Github</a></li>
-                    <li><a th:href="@{#}"><i class="fa fa-facebook"></i> Facebook </a> </li>
-                    <li><a th:href="@{#}"> Email</a> </li>
-                </ul>
-
-        </div>
-    </div>
-    <br><br>
 <!--    Get All Post-->
-    <div class="row">
-        <div class="col-sm-3" th:each="post:${listPost}">
-            <img th:src="@{images/N3.jpeg}" alt="image not found"/>
-            <p class="card-text" th:text="${#strings.abbreviate(post.content, 100)}">content</p>
-            <a class="card-text" style="font-family:courier;" th:href="@{/posts/{id}(id=${post.user.id})}"  th:text="${post.user.fullname}">Tac gia</a>
-            <span class="card-text" style="font-family:courier;" th:text="${post.create_at}">Ngay viet</span>
-            <div th:if="${post.comments.size > 0}" style="display:inline">
-                <i class="fa fa-commenting-o" aria-hidden="true"></i>
-                <span class="me-2" th:text="${post.comments.size}"></span>
-            </div>
-            <div>
-                <a th:href="@{/post/{id}(id=${post.id})}" class="card-link">See more...</a>
-            </div>
 
-        </div>
-    </div>
+            <div class="col-sm-4" th:each="post:${listPost}">
+                <img th:src="@{images/N3.jpeg}" alt="image not found"/>
+                <p class="card-text" th:text="${#strings.abbreviate(post.content, 100)}">content</p>
+                <a class="card-text" style="font-family:courier;" th:href="@{/posts/{id}(id=${post.user.id})}"  th:text="${post.user.fullname}">Tac gia</a>
+                <span class="card-text" style="font-family:courier;" th:text="${post.create_at}">Ngay viet</span>
+                <div th:if="${post.comments.size > 0}" style="display:inline">
+                    <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                    <span class="me-2" th:text="${post.comments.size}"></span>
+                </div>
+                <div>
+                    <a th:href="@{/post/{id}(id=${post.id})}" class="card-link">See more...</a>
+                </div>
+            </div>
 </div>
 
 <div class="container-fluid text-center">

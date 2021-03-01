@@ -66,19 +66,20 @@ public class HomeController {
             }
            return "admin/index";
         }else {
+            if (page == null) {
+                page = 0;
+            }
+            Page<Post> pagePosts = postService.findAllPaging(page, 9); //Mỗi page 9 Post
+
+            List<Post> posts = pagePosts.getContent();
+            model.addAttribute("listPost", posts);
+            //Sinh ra cấu trúc dữ liệu phân trang
+            List<Paging> pagings = Paging.generatePages(page, pagePosts.getTotalPages());
+            model.addAttribute("pagings", pagings);
+
             if (optionalUser.isPresent()) {
                 User user = optionalUser.get();
                 model.addAttribute("user", user);
-                if (page == null) {
-                    page = 0;
-                }
-                Page<Post> pagePosts = postService.findAllPaging(page, 9); //Mỗi page 9 Post
-
-                List<Post> posts = pagePosts.getContent();
-                model.addAttribute("listPost", posts);
-                //Sinh ra cấu trúc dữ liệu phân trang
-                List<Paging> pagings = Paging.generatePages(page, pagePosts.getTotalPages());
-                model.addAttribute("pagings", pagings);
             }
             return "index";
         }
