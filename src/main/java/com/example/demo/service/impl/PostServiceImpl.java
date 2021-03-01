@@ -101,35 +101,53 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> getAllPostByTagId(String category, long tag_id){
         List<Post> postList = new ArrayList<>();
+        List<Post> postResult = new ArrayList<>();
         switch (category){
             case "N1":     // N1
                 postList = postRepository.getAllPostCategoryByTagId(tag_id);
+                postResult = removeElementDuplicate(postList, 1);
                 break;
             case "N2":     // N2
                 postList = postRepository.getAllPostCategoryByTagId(tag_id);
+                postResult = removeElementDuplicate(postList, 2);
                 break;
             case "N3":     // N3
                 postList = postRepository.getAllPostCategoryByTagId(tag_id);
+                postResult = removeElementDuplicate(postList, 3);
                 break;
             case "N4":     // N4
                 postList = postRepository.getAllPostCategoryByTagId(tag_id);
+                postResult = removeElementDuplicate(postList, 4);
                 break;
             case "N5":     // N5
                 postList = postRepository.getAllPostCategoryByTagId(tag_id);;
+                postResult = removeElementDuplicate(postList, 5);
                 break;
             case "it-japanese":     // IT Japanese
-                postList = postRepository.getAllPostCategoryByTagId(tag_id);
-                break;
             case "java-basic":     // Java Basic
-                postList = postRepository.getAllPostCategoryByTagId(tag_id);
-                break;
             case "spring-boot":     // Spring boot
-                postList = postRepository.getAllPostCategoryByTagId(tag_id);
+                postResult = postRepository.getAllPostCategoryByTagId(tag_id);
                 break;
             default:
                 break;
         }
-        return postList;
+
+        return postResult;
+    }
+
+    public List<Post> removeElementDuplicate(List<Post> posts, long tag_id){
+        Tag tag = tagRepository.findById(tag_id).get();
+        List<Post> post = new ArrayList<>();
+        for (Post post_element: posts){
+            if(!post.contains(post_element)){
+                for(Tag tag_element:post_element.getTags()){
+                    if(tag == tag_element){
+                        post.add(post_element);
+                    }
+                }
+            }
+        }
+        return post;
     }
 
 }

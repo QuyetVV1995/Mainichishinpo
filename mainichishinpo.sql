@@ -88,8 +88,9 @@ insert into post(title, content, user_id, create_at) values ('Tieu de bai viet s
 insert into post_tag(tag_id, post_id) values (5,1);
 insert into post_tag(tag_id, post_id) values (4,1);
 insert into post_tag(tag_id, post_id) values (2,2);
-insert into post_tag(tag_id, post_id) values (10,6);
-insert into post_tag(tag_id, post_id) values (3,6);
+insert into post_tag(tag_id, post_id) values (13,5);
+insert into post_tag(tag_id, post_id) values (9,6);
+insert into post_tag(tag_id, post_id) values (12,6);
 
 
 insert into comment (content, post_id, user_id) values('comment so 1', 2, 1);
@@ -99,7 +100,7 @@ insert into comment (content, post_id, user_id) values('comment so 3', 4, 2);
 
 select * from post_tag inner join post on post_tag.post_id = post.id where post_tag.tag_id = 10 or post_tag.tag_id = 1 ;
 
-select * from post, post_tag, tag where post.id = post_tag.id and post_tag.tag_id = tag.id and tag.id = 10;
+select * from post, post_tag, tag where post.id = post_tag.id and post_tag.tag_id = tag.id and tag.id = 3;
 
 SELECT * FROM post INNER JOIN tag ON  tag.name = 'Kanji';
 
@@ -107,8 +108,31 @@ SELECT * FROM post INNER JOIN tag ON  tag.name = 'Kanji';
 SELECT * FROM post inner join post_tag on post_tag.tag_id = 5 ;
 use mainichishinpo;
 
--- Lay bai viet N3 Kanji
-SELECT * FROM  post inner join post_tag on post_tag.tag_id = 3 where post.id = post_tag.post_id and post_tag.tag_id = 10 ;
+select * from post, post_tag, tag where tag.id = 3 and post_tag.tag_id = tag.id and post_tag.post_id = post.id;
 
 
-SELECT * FROM  post inner join post_tag on post_tag.tag_id = 3 where post.id = post_tag.post_id;
+
+insert into post(title, content, user_id, create_at) values ('Tieu de 1', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem sed id ipsam, aperiam ea tempore enim eveniet repellendus eaque vero iusto veniam natus atque, saepe porro harum provident minima? Debitis saepe explicabo ad optio, nobis labore sequi temporibus doloribus sunt?', 1, now());
+insert into post(title, content, user_id, create_at) values ('Tieu de 2', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem sed id ipsam, aperiam ea tempore enim eveniet repellendus eaque vero iusto veniam natus atque, saepe porro harum provident minima? Debitis saepe explicabo ad optio, nobis labore sequi temporibus doloribus sunt?', 1, now());
+insert into post(title, content, user_id, create_at) values ('Tieu de 3', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem sed id ipsam, aperiam ea tempore enim eveniet repellendus eaque vero iusto veniam natus atque, saepe porro harum provident minima? Debitis saepe explicabo ad optio, nobis labore sequi temporibus doloribus sunt?', 1, now());
+insert into post(title, content, user_id, create_at) values ('Tieu de 4', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem sed id ipsam, aperiam ea tempore enim eveniet repellendus eaque vero iusto veniam natus atque, saepe porro harum provident minima? Debitis saepe explicabo ad optio, nobis labore sequi temporibus doloribus sunt?', 1, now());
+insert into post(title, content, user_id, create_at) values ('Tieu de 6', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem sed id ipsam, aperiam ea tempore enim eveniet repellendus eaque vero iusto veniam natus atque, saepe porro harum provident minima? Debitis saepe explicabo ad optio, nobis labore sequi temporibus doloribus sunt?', 1, now());
+
+-- Bai viet so 7: n5, kanji
+insert into post_tag(tag_id, post_id) values (10,7);
+insert into post_tag(tag_id, post_id) values (5,7);
+
+-- bai viet so 8: n4 tu vung
+insert into post_tag(tag_id, post_id) values (4,8);
+insert into post_tag(tag_id, post_id) values (9,8);
+
+
+insert into post_tag(tag_id, post_id) values (2,9);
+insert into post_tag(tag_id, post_id) values (13,10);
+insert into post_tag(tag_id, post_id) values (9,11);
+
+
+select * from post_tag where post_tag.tag_id = 10;
+
+
+

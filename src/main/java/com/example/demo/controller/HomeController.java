@@ -36,6 +36,7 @@ public class HomeController {
     public String homepage(@PathVariable(value="page", required = false) Integer page, Model model){
         Optional<User> optionalUser = userService.findbyEmail(userService.getUsername());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("searchRequest", new SearchRequest());
         if(auth.getAuthorities().stream().anyMatch(ga -> ga.getAuthority().equals("ROLE_ADMIN"))){
             if (optionalUser.isPresent()) {
 
@@ -45,22 +46,23 @@ public class HomeController {
                 List<User> userList = userService.findAll();
                 model.addAttribute("userList", userList);
 
-                long totalN1 = postService.getAllPostN1ByTagId(1).size();
-                long totalN2 = postService.getAllPostN2ByTagId(2).size();
-                long totalN3 = postService.getAllPostN3ByTagId(3).size();
-                long totalN4 = postService.getAllPostN4ByTagId(4).size();
-                long totalN5 = postService.getAllPostN5ByTagId(5).size();
+
+//                long totalN1 = postService.getAllPostN1ByTagId(1).size();
+//                long totalN2 = postService.getAllPostN2ByTagId(2).size();
+//                long totalN3 = postService.getAllPostN3ByTagId(3).size();
+//                long totalN4 = postService.getAllPostN4ByTagId(4).size();
+//                long totalN5 = postService.getAllPostN5ByTagId(5).size();
 //                long total_ITJapan = postService.getAllPostN5ByTagId(6).size();
 //                long total_JavaBasic = postService.getAllPostN5ByTagId(7).size();
 //                long total_SpringBoot = postService.getAllPostN5ByTagId(8).size();
 
-                model.addAttribute("totalN5", totalN5);
-                model.addAttribute("totalN4", totalN4);
-                model.addAttribute("totalN3", totalN3);
-                model.addAttribute("totalN2", totalN2);
-                model.addAttribute("totalN1", totalN1);
+//                model.addAttribute("totalN5", totalN5);
+//                model.addAttribute("totalN4", totalN4);
+//                model.addAttribute("totalN3", totalN3);
+//                model.addAttribute("totalN2", totalN2);
+//                model.addAttribute("totalN1", totalN1);
 
-                model.addAttribute("searchRequest", new SearchRequest());
+
             }
            return "admin/index";
         }else {
@@ -77,7 +79,6 @@ public class HomeController {
                 //Sinh ra cấu trúc dữ liệu phân trang
                 List<Paging> pagings = Paging.generatePages(page, pagePosts.getTotalPages());
                 model.addAttribute("pagings", pagings);
-                model.addAttribute("searchRequest", new SearchRequest());
             }
             return "index";
         }

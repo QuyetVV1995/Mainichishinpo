@@ -105,6 +105,7 @@
     var N3 = [[${totalN3}]];
     var N2 = [[${totalN2}]];
     var N1 = [[${totalN1}]];
+
         $("#chart").shieldChart({
             theme: "bootstrap",
             exportOptions: {
@@ -127,7 +128,7 @@
             dataSeries: [{
                 seriesType: "bar",
                 collectionAlias: "Gold Medals",
-                data: [N5,2,3,4,5,6,7,8]
+                data: [N5,N4,N3,N2,N1,6,7,8]
             }]
         });
     });
