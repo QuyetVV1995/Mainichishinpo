@@ -5,7 +5,8 @@ create table user(
 id bigint not null primary key auto_increment,
 email varchar(255) not null,
 fullname varchar(255),
-password varchar(255)
+password varchar(255),
+isAdmin boolean;
 );
 create table role(
 id bigint not null primary key auto_increment,

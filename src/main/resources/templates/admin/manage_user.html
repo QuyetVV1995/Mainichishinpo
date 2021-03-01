@@ -40,8 +40,8 @@
                     <td th:text="${user.email}">email</td>
                     <td th:each="role:${user.roles}">
                         <p th:text="${role.name}"></p>
-                        <a th:href="@{#}">Edit</a>
-                        <a th:href="@{#}">Delete</a>
+                        <a th:href="@{/admin/edit/{id}(id=${user.id})}">Edit</a>
+                        <a th:href="@{/admin/delete/{id}(id=${user.id})}">Delete</a>
                     </td>
                 </tr>
                 </tbody>
