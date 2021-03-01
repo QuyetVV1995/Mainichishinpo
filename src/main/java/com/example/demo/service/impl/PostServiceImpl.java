@@ -179,6 +179,11 @@ public class PostServiceImpl implements PostService {
         return postRepository.save(post);
     }
 
+    @Override
+    public void deleteByID(long id) {
+        postRepository.deleteById(id);
+    }
+
     public List<Post> removeElementDuplicateWithTagId(List<Post> posts, long tag_id){
         Tag tag = tagRepository.findById(tag_id).get();
         List<Post> post = new ArrayList<>();

@@ -27,4 +27,5 @@ public interface PostService {
 
     public Post save(Post post);
 
+    public void deleteByID(long id);
 }

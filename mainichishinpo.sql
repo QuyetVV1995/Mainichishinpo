@@ -48,9 +48,11 @@ alter table users_roles add  foreign key(user_id) references user(id);
 alter table users_roles add  foreign key(role_id) references role(id);
 alter table comment add foreign key(post_id) references post(id);
 alter table comment add foreign key(user_id) references user(id);
-alter table post add constraint FK72mt33dhhs48hf9gcqrq4fxte foreign key (user_id) references user (id);
-alter table post_tag add constraint FKac1wdchd2pnur3fl225obmlg0 foreign key (tag_id) references tag (id);
-alter table post_tag add constraint FKc2auetuvsec0k566l0eyvr9cs foreign key (post_id) references post (id);
+
+alter table post add  foreign key (user_id) references user (id);
+
+alter table post_tag add foreign key (tag_id) references tag (id);
+alter table post_tag add foreign key (post_id) references post (id);
 
 
 -- --password:123
@@ -134,7 +136,10 @@ insert into post_tag(tag_id, post_id) values (9,11);
 
 select * from post_tag where post_tag.tag_id = 10;
 
-delete from post where id = 1;
+alter table post drop column is_admin;
+
+delete from post where id = 2;
+
 
 
 

@@ -20,7 +20,7 @@
 <a th:href="@{/admin/post/create-post}"> Create new post</a>
 <div class="container">
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-9">
             <table class="table table-bordered">
                 <thead class="thead-dark">
                 <tr>
@@ -44,8 +44,9 @@
                     </td>
                     <td th:text="${post.user.fullname}">Author</td>
                     <td >
-<!--                        <a th:href="@{/admin/post/edit/{id}(id=${post.id})}">Edit</a>-->
-<!--                        <a th:href="@{/admin/post/delete/{id}(id=${post.id})}">Delete</a>-->
+                        <a th:href="@{/admin/posts/view/{id}(id=${post.id})}">View</a>
+                        <a th:href="@{/admin/posts/edit/{id}(id=${post.id})}">Edit</a>
+                        <a th:href="@{/admin/posts/delete/{id}(id=${post.id})}">Delete</a>
                     </td>
 
                 </tr>

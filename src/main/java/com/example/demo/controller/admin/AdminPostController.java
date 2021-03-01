@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
@@ -56,5 +57,37 @@ public class AdminPostController {
         post.setUser(user);
         postService.save(post);
         return "redirect:/admin/manage-post";
+    }
+
+    @GetMapping("/posts/edit/{id}")
+    public String editPost(@PathVariable("id") long id, Model model){
+        Optional<User> optionalUser = userService.findbyEmail(userService.getUsername());
+        User user = optionalUser.get();
+        model.addAttribute("user", user);
+        model.addAttribute("searchRequest", new SearchRequest());
+        Post post = postService.findById(id).get();
+        model.addAttribute("newPost", post);
+        List<Tag> tagList = tagService.findAll();
+        model.addAttribute("tagList", tagList);
+        return "admin/edit_post";
+    }
+
+    @GetMapping("/posts/delete/{id}")
+    public String deletePost(@PathVariable("id") long id){
+        postService.deleteByID(id);
+        return "redirect:/admin/manage-post";
+    }
+
+    @GetMapping("/posts/view/{id}")
+    public String viewPost(@PathVariable("id") long id, Model model){
+        Optional<User> optionalUser = userService.findbyEmail(userService.getUsername());
+        User user = optionalUser.get();
+        model.addAttribute("user", user);
+        model.addAttribute("searchRequest", new SearchRequest());
+        Post post = postService.findById(id).get();
+        model.addAttribute("post", post);
+        Set<Tag> tagList = post.getTags();
+        model.addAttribute("tagList", tagList);
+        return "/admin/post_view";
     }
 }
