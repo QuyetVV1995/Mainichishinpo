@@ -5,8 +5,7 @@ create table user(
 id bigint not null primary key auto_increment,
 email varchar(255) not null,
 fullname varchar(255),
-password varchar(255),
-isAdmin boolean;
+password varchar(255)
 );
 create table role(
 id bigint not null primary key auto_increment,
@@ -134,6 +133,8 @@ insert into post_tag(tag_id, post_id) values (9,11);
 
 
 select * from post_tag where post_tag.tag_id = 10;
+
+delete from post where id = 1;
 
 
 

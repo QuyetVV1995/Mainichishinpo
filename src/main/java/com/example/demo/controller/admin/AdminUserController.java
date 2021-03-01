@@ -38,12 +38,12 @@ public class AdminUserController {
         User user = optionalUser.get();
         model.addAttribute("user", user);
         model.addAttribute("searchRequest", new SearchRequest());
-        model.addAttribute("user", new User());
+        model.addAttribute("newUser", new User());
         return "admin/create_user";
     }
 
     @PostMapping("/admin/save-user")
-    public String createUserHandle(@ModelAttribute("user") User user){
+    public String createUserHandle(@ModelAttribute("newUser") User user){
         userService.saveNewUser(user);
         return "redirect:/admin/manage-user";
     }
@@ -55,7 +55,7 @@ public class AdminUserController {
         model.addAttribute("user", user);
         model.addAttribute("searchRequest", new SearchRequest());
         Optional<User> opUser = userService.findById(id);
-        model.addAttribute("user", opUser.get());
+        model.addAttribute("newUser", opUser.get());
         return "admin/edit_user";
     }
 

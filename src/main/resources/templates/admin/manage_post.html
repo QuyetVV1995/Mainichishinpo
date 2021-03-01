@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Manage User</title>
+    <title>Manage post</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -14,10 +13,11 @@
 <body>
 <div th:replace="/../fragments/header :: header"> </div>
 <div th:replace="/../fragments/admin_menu :: admin_menu"> </div>
+
 <h1>
-    Quan ly User
+    Quan ly Post
 </h1>
-<a th:href="@{/admin/create-user}"> Create new user</a>
+<a th:href="@{/admin/post/create-post}"> Create new post</a>
 <div class="container">
     <div class="row">
         <div class="col-sm-8">
@@ -25,24 +25,29 @@
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Fullname</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Role</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Tag</th>
+                    <th scope="col">Author</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="user:${userList}">
-                    <th scope="row" th:text="${user.id}">id</th>
-                    <td th:text="${user.fullname}">fullname</td>
-                    <td th:text="${user.email}">email</td>
-                    <td th:each="role:${user.roles}">
-                        <p th:text="${role.name}"></p>
+                <tr th:each="post:${postList}">
+                    <th scope="row" th:text="${post.id}">id</th>
+                    <td th:text="${post.title}">title</td>
+                    <td th:text="${#strings.abbreviate(post.content, 100)}">content</td>
+                    <td >
+                        <ul th:each="tag:${post.tags}">
+                            <li th:text="${tag.name}"></li>
+                        </ul>
                     </td>
-                    <td>
-                        <a th:href="@{/admin/edit/{id}(id=${user.id})}">Edit</a>
-                        <a th:href="@{/admin/delete/{id}(id=${user.id})}">Delete</a>
+                    <td th:text="${post.user.fullname}">Author</td>
+                    <td >
+<!--                        <a th:href="@{/admin/post/edit/{id}(id=${post.id})}">Edit</a>-->
+<!--                        <a th:href="@{/admin/post/delete/{id}(id=${post.id})}">Delete</a>-->
                     </td>
+
                 </tr>
                 </tbody>
             </table>
