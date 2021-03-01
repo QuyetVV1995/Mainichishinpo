@@ -22,21 +22,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query(value = "SELECT * FROM post INNER JOIN post_tag ON post_tag.post_id = :n where post.id = post_tag.post_id and post_tag.tag_id = :category", nativeQuery = true)
     List<Post> getAllPostsByCategory(@Param("n") long n, @Param("category") long category);
 
-
-    @Query(value = "SELECT * FROM post, post_tag, tag WHERE tag.id = 5 AND post_tag.tag_id = tag.id AND post_tag.post_id = post.id;", nativeQuery = true)
-    List<Post> getAllPostN5ByTagId();
-
-    @Query(value = "SELECT * FROM post, post_tag, tag WHERE tag.id = 4 AND post_tag.tag_id = tag.id AND post_tag.post_id = post.id;", nativeQuery = true)
-    List<Post> getAllPostN4ByTagId();
-
-    @Query(value = "SELECT * FROM post, post_tag, tag WHERE tag.id = 3 AND post_tag.tag_id = tag.id AND post_tag.post_id = post.id;", nativeQuery = true)
-    List<Post> getAllPostN3ByTagId();
-
-    @Query(value = "SELECT * FROM post, post_tag, tag WHERE tag.id = 2 AND post_tag.tag_id = tag.id AND post_tag.post_id = post.id;", nativeQuery = true)
-    List<Post> getAllPostN2ByTagId();
-
-    @Query(value = "SELECT * FROM post, post_tag, tag WHERE tag.id = 1 AND post_tag.tag_id = tag.id AND post_tag.post_id = post.id;", nativeQuery = true)
-    List<Post> getAllPostN1ByTagId();
-
-
+    @Query(value = "SELECT * FROM post, post_tag, tag WHERE tag.id = :tag_id AND post_tag.tag_id = tag.id AND post_tag.post_id = post.id;", nativeQuery = true)
+    List<Post> getAllPostCategoryByTagId(@Param("tag_id") long tag_id);
 }

@@ -3,8 +3,10 @@ package com.example.demo.controller;
 import com.example.demo.controller.request.SearchRequest;
 import com.example.demo.entity.Post;
 import com.example.demo.entity.Tag;
+import com.example.demo.entity.User;
 import com.example.demo.service.PostService;
 import com.example.demo.service.TagService;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +23,15 @@ public class TagController {
     private PostService postService;
     @Autowired
     private TagService tagService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/tag/{id}")
     public String getPostByTag(@PathVariable("id") Long id, Model model){
         Optional<Tag> optionalTag = tagService.findById(id);
         model.addAttribute("searchRequest", new SearchRequest());
+        User user = userService.findbyEmail(userService.getUsername()).get();
+        model.addAttribute("user", user);
         if(optionalTag.isPresent()){
             Tag tag = optionalTag.get();
             List<Post> posts = tag.getPosts();

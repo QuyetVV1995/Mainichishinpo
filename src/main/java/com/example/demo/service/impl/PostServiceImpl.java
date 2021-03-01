@@ -99,101 +99,35 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> getAllPostN5ByTagId(long tag_id) {
-        List<Post> list = postRepository.getAllPostN5ByTagId();
+    public List<Post> getAllPostByTagId(String category, long tag_id){
         List<Post> postList = new ArrayList<>();
-        Tag tag = tagRepository.findById(tag_id).get();
-        System.out.println(tag.getName());
-
-        // Loai bo cac phan tu trung nhau
-        for (Post post : list){
-            if(!postList.contains(post)){
-                for(Tag tag_element : post.getTags()){
-                    if(tag == tag_element){
-                        postList.add(post);
-                    }
-                }
-            }
-        }
-        return postList;
-    }
-
-    @Override
-    public List<Post> getAllPostN4ByTagId(long tag_id) {
-        List<Post> list = postRepository.getAllPostN4ByTagId();
-        List<Post> postList = new ArrayList<>();
-        Tag tag = tagRepository.findById(tag_id).get();
-        System.out.println(tag.getName());
-
-        // Loai bo cac phan tu trung nhau
-        for (Post post : list){
-            if(!postList.contains(post)){
-                for(Tag tag_element : post.getTags()){
-                    if(tag == tag_element){
-                        postList.add(post);
-                    }
-                }
-            }
-        }
-        return postList;
-    }
-
-    @Override
-    public List<Post> getAllPostN3ByTagId(long tag_id){
-        List<Post> list = postRepository.getAllPostN3ByTagId();
-        List<Post> postList = new ArrayList<>();
-        Tag tag = tagRepository.findById(tag_id).get();
-        System.out.println(tag.getName());
-
-        // Loai bo cac phan tu trung nhau
-        for (Post post : list){
-            if(!postList.contains(post)){
-                for(Tag tag_element : post.getTags()){
-                    if(tag == tag_element){
-                        postList.add(post);
-                    }
-                }
-            }
-        }
-        return postList;
-    }
-
-    @Override
-    public List<Post> getAllPostN2ByTagId(long tag_id) {
-        List<Post> list = postRepository.getAllPostN2ByTagId();
-        List<Post> postList = new ArrayList<>();
-        Tag tag = tagRepository.findById(tag_id).get();
-        System.out.println(tag.getName());
-
-        // Loai bo cac phan tu trung nhau
-        for (Post post : list){
-            if(!postList.contains(post)){
-                for(Tag tag_element : post.getTags()){
-                    if(tag == tag_element){
-                        postList.add(post);
-                    }
-                }
-            }
-        }
-        return postList;
-    }
-
-    @Override
-    public List<Post> getAllPostN1ByTagId(long tag_id) {
-        List<Post> list = postRepository.getAllPostN1ByTagId();
-        List<Post> postList = new ArrayList<>();
-        Tag tag = tagRepository.findById(tag_id).get();
-        System.out.println(tag.getName());
-
-        // Loai bo cac phan tu trung nhau
-        for (Post post : list){
-            if(!postList.contains(post)){
-                for(Tag tag_element : post.getTags()){
-                    if(tag == tag_element){
-                        postList.add(post);
-                    }
-                }
-            }
+        switch (category){
+            case "N1":     // N1
+                postList = postRepository.getAllPostCategoryByTagId(tag_id);
+                break;
+            case "N2":     // N2
+                postList = postRepository.getAllPostCategoryByTagId(tag_id);
+                break;
+            case "N3":     // N3
+                postList = postRepository.getAllPostCategoryByTagId(tag_id);
+                break;
+            case "N4":     // N4
+                postList = postRepository.getAllPostCategoryByTagId(tag_id);
+                break;
+            case "N5":     // N5
+                postList = postRepository.getAllPostCategoryByTagId(tag_id);;
+                break;
+            case "it-japanese":     // IT Japanese
+                postList = postRepository.getAllPostCategoryByTagId(tag_id);
+                break;
+            case "java-basic":     // Java Basic
+                postList = postRepository.getAllPostCategoryByTagId(tag_id);
+                break;
+            case "spring-boot":     // Spring boot
+                postList = postRepository.getAllPostCategoryByTagId(tag_id);
+                break;
+            default:
+                break;
         }
         return postList;
     }

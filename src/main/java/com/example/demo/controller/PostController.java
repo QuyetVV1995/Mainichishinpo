@@ -70,38 +70,11 @@ public class PostController {
         }
     }
 
-    @GetMapping("/posts/N5/{category}")
-    public String getAllPostsOfCategoryN5(@PathVariable("category") long category, Model model){
-        List<Post> postList = postService.getAllPostN5ByTagId(category);
-        model.addAttribute("searchRequest", new SearchRequest());
-        model.addAttribute("posts", postList);
-        return "postsOfCategory";
-    }
-
-    @GetMapping("/posts/N4/{category}")
-    public String getAllPostsOfCategoryN4(@PathVariable("category") long category, Model model){
-        List<Post> postList = postService.getAllPostN4ByTagId(category);
-        model.addAttribute("searchRequest", new SearchRequest());
-        model.addAttribute("posts", postList);
-        return "postsOfCategory";
-    }
-    @GetMapping("/posts/N3/{category}")
-    public String getAllPostsOfCategoryN3(@PathVariable("category") long category, Model model){
-        List<Post> postList = postService.getAllPostN3ByTagId(category);
-        model.addAttribute("searchRequest", new SearchRequest());
-        model.addAttribute("posts", postList);
-        return "postsOfCategory";
-    }
-    @GetMapping("/posts/N2/{category}")
-    public String getAllPostsOfCategoryN2(@PathVariable("category") long category, Model model){
-        List<Post> postList = postService.getAllPostN2ByTagId(category);
-        model.addAttribute("searchRequest", new SearchRequest());
-        model.addAttribute("posts", postList);
-        return "postsOfCategory";
-    }
-    @GetMapping("/posts/N1/{category}")
-    public String getAllPostsOfCategoryN1(@PathVariable("category") long category, Model model){
-        List<Post> postList = postService.getAllPostN1ByTagId(category);
+    @GetMapping("/posts/{category}/{tag_id}")
+    public String getAllPostsOfCategory(@PathVariable("tag_id") long tag_id, @PathVariable("category") String category, Model model){
+        User user = userService.findbyEmail(userService.getUsername()).get();
+        model.addAttribute("user", user);
+        List<Post> postList = postService.getAllPostByTagId(category, tag_id);
         model.addAttribute("searchRequest", new SearchRequest());
         model.addAttribute("posts", postList);
         return "postsOfCategory";

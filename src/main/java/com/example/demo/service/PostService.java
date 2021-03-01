@@ -21,11 +21,6 @@ public interface PostService {
     public Page<Post> findAllPaging(int page, int pageSize);
     public List<Post> getAllPostsByUserID(long user_id);
 
-    public List<Post> getAllPostN5ByTagId(long tag_id);
-    public List<Post> getAllPostN4ByTagId(long tag_id);
-    public List<Post> getAllPostN3ByTagId(long tag_id);
-    public List<Post> getAllPostN2ByTagId(long tag_id);
-    public List<Post> getAllPostN1ByTagId(long tag_id);
 
-
+    List<Post> getAllPostByTagId(String category, long tag_id);
 }

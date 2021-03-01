@@ -4,6 +4,7 @@ import com.example.demo.entity.User;
 import com.example.demo.model.UserDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
@@ -13,4 +14,7 @@ public interface UserService extends UserDetailsService {
     String getUsername();
 
     Optional<User> findById(long id);
+
+    List<User> findAll();
+
 }
