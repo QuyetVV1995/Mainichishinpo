@@ -15,9 +15,9 @@
 <div th:replace="/../fragments/admin_menu :: admin_menu"> </div>
 
 <h1>
-    Quan ly Post
+    Quan ly bai viet
 </h1>
-<a th:href="@{/admin/post/create-post}"> Create new post</a>
+<a class="badge badge-danger" th:href="@{/admin/post/create-post}"> Create new post</a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
@@ -29,7 +29,7 @@
                     <th scope="col">Content</th>
                     <th scope="col">Tag</th>
                     <th scope="col">Author</th>
-                    <th scope="col"></th>
+                    <th scope="col">       </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,9 +44,9 @@
                     </td>
                     <td th:text="${post.user.fullname}">Author</td>
                     <td >
-                        <a th:href="@{/admin/posts/view/{id}(id=${post.id})}">View</a>
-                        <a th:href="@{/admin/posts/edit/{id}(id=${post.id})}">Edit</a>
-                        <a th:href="@{/admin/posts/delete/{id}(id=${post.id})}">Delete</a>
+                        <a th:href="@{/admin/posts/view/{id}(id=${post.id})}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <a th:href="@{/admin/posts/edit/{id}(id=${post.id})}"><i class="fas fa-edit"></i></a>
+                        <a th:href="@{/admin/posts/delete/{id}(id=${post.id})}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </td>
 
                 </tr>

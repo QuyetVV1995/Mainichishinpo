@@ -15,9 +15,9 @@
 <div th:replace="/../fragments/header :: header"> </div>
 <div th:replace="/../fragments/admin_menu :: admin_menu"> </div>
 <h1>
-    Quan ly User
+    Quan ly nguoi dung
 </h1>
-<a th:href="@{/admin/create-user}"> Create new user</a>
+<a class="badge badge-danger" th:href="@{/admin/create-user}"> Create new user</a>
 <div class="container">
     <div class="row">
         <div class="col-sm-8">
@@ -28,7 +28,7 @@
                     <th scope="col">Fullname</th>
                     <th scope="col">Email</th>
                     <th scope="col">Role</th>
-                    <th scope="col"></th>
+                    <th scope="col"> </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,8 +40,8 @@
                         <p th:text="${role.name}"></p>
                     </td>
                     <td>
-                        <a th:href="@{/admin/edit/{id}(id=${user.id})}">Edit</a>
-                        <a th:href="@{/admin/delete/{id}(id=${user.id})}">Delete</a>
+                        <a th:href="@{/admin/edit/{id}(id=${user.id})}"><i class="fas fa-edit"></i></a>
+                        <a th:href="@{/admin/delete/{id}(id=${user.id})}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </td>
                 </tr>
                 </tbody>
