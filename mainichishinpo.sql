@@ -1,4 +1,4 @@
-create database mainichishinpo;
+create database IF NOT EXISTS mainichishinpo;
 use mainichishinpo;
 
 create table user(
@@ -44,8 +44,8 @@ tag_id bigint not null,
 post_id bigint not null
 );
 
-alter table users_roles add  foreign key(user_id) references user(id);
-alter table users_roles add  foreign key(role_id) references role(id);
+alter table users_roles add foreign key(user_id) references user(id);
+alter table users_roles add foreign key(role_id) references role(id);
 alter table comment add foreign key(post_id) references post(id);
 alter table comment add foreign key(user_id) references user(id);
 
