@@ -1,10 +1,12 @@
 package com.example.demo.controller.admin;
 
+import com.example.demo.controller.request.PostRequest;
 import com.example.demo.controller.request.SearchRequest;
 import com.example.demo.entity.Post;
 import com.example.demo.entity.Tag;
 import com.example.demo.entity.User;
 import com.example.demo.service.PostService;
+import com.example.demo.service.StorageService;
 import com.example.demo.service.TagService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class AdminPostController {
     private PostService postService;
     @Autowired
     private TagService tagService;
+    @Autowired
+    private StorageService storageService;
 
     @GetMapping("/manage-post")
     public String managePost(Model model){
@@ -44,16 +48,18 @@ public class AdminPostController {
         User user = optionalUser.get();
         model.addAttribute("user", user);
         model.addAttribute("searchRequest", new SearchRequest());
-        model.addAttribute("newPost", new Post());
+        model.addAttribute("newPost", new PostRequest());
         List<Tag> tagList = tagService.findAll();
         model.addAttribute("tagList", tagList);
         return "/admin/create_post";
     }
 
-    @PostMapping("/post/save-post")
-    public String createPostHandle(@ModelAttribute("newPost") Post post){
+    @PostMapping(value = "/post/save-post")
+    public String createPostHandle(@ModelAttribute("newPost") PostRequest postRequest ){
         Optional<User> optionalUser = userService.findbyEmail(userService.getUsername());
         User user = optionalUser.get();
+        storageService.uploadFile(postRequest.getFile());
+        Post post = new Post(postRequest.getTitle(),postRequest.getContent(), postRequest.getTags());
         post.setUser(user);
         postService.save(post);
         return "redirect:/admin/manage-post";
@@ -66,7 +72,8 @@ public class AdminPostController {
         model.addAttribute("user", user);
         model.addAttribute("searchRequest", new SearchRequest());
         Post post = postService.findById(id).get();
-        model.addAttribute("newPost", post);
+        PostRequest postRequest = new PostRequest(post.getId(), post.getTitle(), post.getContent(), post.getTags());
+        model.addAttribute("newPost", postRequest);
         List<Tag> tagList = tagService.findAll();
         model.addAttribute("tagList", tagList);
         return "admin/edit_post";

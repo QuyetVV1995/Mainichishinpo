@@ -20,14 +20,14 @@
 
             <h1>Create new post</h1>
 
-            <form th:action="@{/admin/post/save-post}" method="post" th:object="${newPost}">
+            <form th:action="@{/admin/post/save-post}" enctype="multipart/form-data" method="post" th:object="${newPost}">
                 <div class="form-group">
                     <label class="control-label" for="title"> Title </label> <input
                         id="title" class="form-control" th:field="*{title}"
                         required autofocus="autofocus" />
                 </div>
 
-                <div class="checkbox-inline " th:each="tag:${tagList}">
+                <div class="checkbox-inline" th:each="tag:${tagList}">
                     <input type="checkbox"
                            th:value="${tag.id}" id="${tag.id}"
                            name="tags">
@@ -39,6 +39,11 @@
                     <textarea style="height:500px;"
                         id="content" class="form-control" th:field="*{content}" required
                         autofocus="autofocus" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="photo"> Photo </label>
+                    <input type="file" id="photo" name="photo" th:field="*{file}" />
                 </div>
 
                 <div class="form-group">

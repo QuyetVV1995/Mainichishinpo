@@ -33,9 +33,10 @@ public class Post {
 
     private LocalDate create_at;
 
-    public Post(String title, String content) {
+    public Post(String title, String content, Set<Tag> tags) {
         this.title = title;
         this.content = content;
+        this.tags = tags;
     }
 
     //-------
