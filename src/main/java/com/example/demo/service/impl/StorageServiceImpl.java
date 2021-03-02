@@ -30,4 +30,11 @@ public class StorageServiceImpl implements StorageService {
             throw new StorageException(msg, e);
         }
     }
+
+    @Override
+    public void uploadFiles(MultipartFile[] files) {
+        for (MultipartFile file : files) {
+            uploadFile(file);
+        }
+    }
 }

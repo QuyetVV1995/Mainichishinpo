@@ -12,7 +12,7 @@ public class PostRequest {
     private String title;
     private String content;
     private Set<Tag> tags;
-    private MultipartFile file;
+    private MultipartFile[] file;
 
     public PostRequest(Long id, String title, String content, Set<Tag> tags) {
         this.id = id;

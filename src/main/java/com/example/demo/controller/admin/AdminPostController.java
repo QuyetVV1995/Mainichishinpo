@@ -58,7 +58,7 @@ public class AdminPostController {
     public String createPostHandle(@ModelAttribute("newPost") PostRequest postRequest ){
         Optional<User> optionalUser = userService.findbyEmail(userService.getUsername());
         User user = optionalUser.get();
-        storageService.uploadFile(postRequest.getFile());
+        storageService.uploadFiles(postRequest.getFile());
         Post post = new Post(postRequest.getTitle(),postRequest.getContent(), postRequest.getTags());
         post.setUser(user);
         postService.save(post);
