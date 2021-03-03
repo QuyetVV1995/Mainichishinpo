@@ -16,6 +16,11 @@
     <div class = "row">
         <div class = "col-md-6 col-md-offset-3">
 
+            <div th:unless="${messageResetPassword} == null">
+                <p th:text="${messageResetPassword}"></p>
+            </div>
+
+
             <h1> Đăng nhập  </h1>
             <form th:action="@{/login}" method="post">
 
@@ -51,8 +56,9 @@
                     </div>
                 </div>
             </form>
+            <a th:href="@{/forgot_password}">Quên mật khẩu?</a>
             <div class="form-group">
-      <span>Tạo tài khoản mới? <a href="/" th:href="@{/registration}">Đăng ký</a></span>
+                <span>Tạo tài khoản mới? <a href="/" th:href="@{/registration}">Đăng ký</a></span>
             </div>
         </div>
     </div>

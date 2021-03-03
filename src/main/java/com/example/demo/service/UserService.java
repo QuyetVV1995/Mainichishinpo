@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.entity.User;
 import com.example.demo.model.UserDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
@@ -26,4 +27,8 @@ public interface UserService extends UserDetailsService {
     public void register(UserDto userDto, String siteURL) throws UnsupportedEncodingException, MessagingException;
 
     public boolean verify(String verificationCode);
+
+    public void updateResetPasswordToken(String token, String email) throws UsernameNotFoundException;
+    public User getByResetPasswordToken(String token);
+    public void updatePassword(User user, String newPassword);
 }

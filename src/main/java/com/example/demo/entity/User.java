@@ -35,6 +35,17 @@ public class User {
 
     private boolean enabled;
 
+    @Column(name = "reset_password_token")
+    private String resetPasswordToken;
+
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
+    }
+
     public String getVerificationCode() {
         return verificationCode;
     }

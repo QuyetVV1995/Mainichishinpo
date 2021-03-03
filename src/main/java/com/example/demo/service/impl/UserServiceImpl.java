@@ -143,6 +143,33 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    // forgot password
+    @Override
+    public void updateResetPasswordToken(String token, String email) throws UsernameNotFoundException{
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        User user = optionalUser.get();
+        if(user != null) {
+            user.setResetPasswordToken(token);
+            userRepository.save(user);
+        } else {
+            throw new UsernameNotFoundException("Could not find any customer with the email" + email);
+        }
+    }
+
+    @Override
+    public User getByResetPasswordToken(String token){
+        return userRepository.findByResetPasswordToken(token);
+    }
+
+    @Override
+    public void updatePassword(User user, String newPassword){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encoderPassword =  passwordEncoder.encode(newPassword);
+        user.setPassword(encoderPassword);
+        user.setResetPasswordToken(null);
+        userRepository.save(user);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
