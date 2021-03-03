@@ -8,6 +8,9 @@ import com.example.demo.entity.Tag;
 import com.example.demo.entity.User;
 import com.example.demo.service.PostService;
 import com.example.demo.service.UserService;
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +37,7 @@ public class PostController {
         model.addAttribute("searchRequest", new SearchRequest());
         if(optionalPost.isPresent()){
             Post post = optionalPost.get();
+            post.setContent(markdownToHTML(post.getContent()));
             model.addAttribute("post", post);
             Set<Tag> tags = post.getTags();
             model.addAttribute("tags", tags);
@@ -62,7 +66,9 @@ public class PostController {
             User user = optionalUser.get();
             model.addAttribute("user", user);
             List<Post> postList = postService.getAllPostsByUserID(user.getId());
-            System.out.println(postList.size());
+            for (Post post:postList){
+                post.setContent(markdownToHTML(post.getContent()));
+            }
             model.addAttribute("posts", postList);
             return "postsOfUser";
         }else {
@@ -76,8 +82,22 @@ public class PostController {
         model.addAttribute("user", user);
         List<Post> postList = postService.getAllPostByTagId(category, tag_id);
         model.addAttribute("searchRequest", new SearchRequest());
+        for (Post post:postList){
+            post.setContent(markdownToHTML(post.getContent()));
+        }
         model.addAttribute("posts", postList);
         return "postsOfCategory";
     }
 
+
+    private String markdownToHTML(String markdown) {
+        Parser parser = Parser.builder()
+                .build();
+
+        Node document = parser.parse(markdown);
+        HtmlRenderer renderer = HtmlRenderer.builder()
+                .build();
+
+        return renderer.render(document);
+    }
 }

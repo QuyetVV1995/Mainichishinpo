@@ -23,7 +23,7 @@
 
             <div class="col-sm-4" th:each="post:${listPost}">
                 <img th:src="@{images/N3.jpeg}" alt="image not found"/>
-                <p class="card-text" th:text="${#strings.abbreviate(post.content, 100)}">content</p>
+                <p class="card-text" th:utext="${#strings.abbreviate(post.content, 100)}">content</p>
                 <a class="card-text" style="font-family:courier;" th:href="@{/posts/{id}(id=${post.user.id})}"  th:text="${post.user.fullname}">Tac gia</a>
                 <span class="card-text" style="font-family:courier;" th:text="${post.create_at}">Ngay viet</span>
                 <div th:if="${post.comments.size > 0}" style="display:inline">

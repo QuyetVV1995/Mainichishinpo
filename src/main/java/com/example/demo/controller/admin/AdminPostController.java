@@ -9,6 +9,9 @@ import com.example.demo.service.PostService;
 import com.example.demo.service.StorageService;
 import com.example.demo.service.TagService;
 import com.example.demo.service.UserService;
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +41,9 @@ public class AdminPostController {
         model.addAttribute("user", user);
         model.addAttribute("searchRequest", new SearchRequest());
         List<Post> postList = postService.findAll();
+        for (Post post:postList){
+            post.setContent(markdownToHTML(post.getContent()));
+        }
         model.addAttribute("postList", postList);
         return "admin/manage_post";
     }
@@ -59,7 +65,8 @@ public class AdminPostController {
         Optional<User> optionalUser = userService.findbyEmail(userService.getUsername());
         User user = optionalUser.get();
         storageService.uploadFiles(postRequest.getFile());
-        Post post = new Post(postRequest.getTitle(),postRequest.getContent(), postRequest.getTags());
+        Post post = new Post(postRequest.getTitle(),"", postRequest.getTags());
+        post.setContent(markdownToHTML(postRequest.getContent()));
         post.setUser(user);
         postService.save(post);
         return "redirect:/admin/manage-post";
@@ -73,6 +80,7 @@ public class AdminPostController {
         model.addAttribute("searchRequest", new SearchRequest());
         Post post = postService.findById(id).get();
         PostRequest postRequest = new PostRequest(post.getId(), post.getTitle(), post.getContent(), post.getTags());
+        postRequest.setFile(null);
         model.addAttribute("newPost", postRequest);
         List<Tag> tagList = tagService.findAll();
         model.addAttribute("tagList", tagList);
@@ -92,9 +100,21 @@ public class AdminPostController {
         model.addAttribute("user", user);
         model.addAttribute("searchRequest", new SearchRequest());
         Post post = postService.findById(id).get();
+        post.setContent(markdownToHTML(post.getContent()));
         model.addAttribute("post", post);
         Set<Tag> tagList = post.getTags();
         model.addAttribute("tagList", tagList);
         return "/admin/post_view";
+    }
+
+    private String markdownToHTML(String markdown) {
+        Parser parser = Parser.builder()
+                .build();
+
+        Node document = parser.parse(markdown);
+        HtmlRenderer renderer = HtmlRenderer.builder()
+                .build();
+
+        return renderer.render(document);
     }
 }

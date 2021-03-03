@@ -22,7 +22,7 @@
     <ul  th:each="tag : ${tagList}">
         <li><a th:href="${'/tag/' + tag.id}" th:text="${tag.name}">tag link</a></li>
     </ul>
-    <p th:text="${post.content}" class="mt-2"></p>
+    <p th:utext="${post.content}" class="mt-2"></p>
 </div>
 
 </body>

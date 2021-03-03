@@ -25,7 +25,7 @@
     <ul  th:each="tag : ${tags}">
             <li><a th:href="${'/tag/' + tag.id}" th:text="${tag.name}">tag link</a></li>
     </ul>
-    <p th:text="${post.content}" class="mt-2"></p>
+    <p th:utext="${post.content}" class="mt-2"></p>
 <!--    Comment-->
     <div class="row">
         <div  th:each="comment:${comments}">
