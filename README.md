@@ -7,3 +7,17 @@ Chạy với docker:
 - Dựng docker compose : `sudo docker-compose up -d`
 - kiểm tra các container đang chạy: `sudo docker ps`
 - Truy cập địa chỉ localhost:8005 để kiểm tra kết quả 
+
+
+thứ tự thực hiện:
+
+- mockup, design UML
+- web static
+- registration
+- add entity: post, comment, tag -> relationship table -> Mysql
+- CRUD post with comment
+- Search and Paging
+- FE: preview image, confirm-password
+- Docker, docker-compose
+- Email: verification new account,,forgot password
+- Schedule: https://github.com/TechMaster/SpringBootBasic/tree/main/schedule/01Basic/demoschedule
