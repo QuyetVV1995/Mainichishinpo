@@ -78,19 +78,17 @@
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
 
-            <div sec:authorize="isAuthenticated()">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a th:href="@{~/login}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-                </ul>
-            </div>
 
-            <div sec:authorize="!isAuthenticated()">
+            <div th:if="${user.fullname} == null">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a th:href="@{~/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>
             </div>
 
-            <div sec:authorize="isAuthenticated()">
+            <div th:unless="${user.fullname} == null">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a th:href="@{~/login}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                </ul>
                 <p class="navbar-brand navbar-right">Xin chào <span th:text="${user.fullname}"> User</span></p>
                 <p class="navbar-brand navbar-right">   </p>
             </div>

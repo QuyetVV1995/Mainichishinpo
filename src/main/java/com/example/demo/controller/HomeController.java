@@ -37,6 +37,7 @@ public class HomeController {
         Optional<User> optionalUser = userService.findbyEmail(userService.getUsername());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("searchRequest", new SearchRequest());
+
         if(auth.getAuthorities().stream().anyMatch(ga -> ga.getAuthority().equals("ROLE_ADMIN"))){
             if (optionalUser.isPresent()) {
 
@@ -65,7 +66,7 @@ public class HomeController {
 
             }
            return "admin/index";
-        }else {
+        }else {         // khong phai ADMIN
             if (page == null) {
                 page = 0;
             }
@@ -77,9 +78,11 @@ public class HomeController {
             List<Paging> pagings = Paging.generatePages(page, pagePosts.getTotalPages());
             model.addAttribute("pagings", pagings);
 
-            if (optionalUser.isPresent()) {
+            if (optionalUser.isPresent()) {     // da dang nhap
                 User user = optionalUser.get();
                 model.addAttribute("user", user);
+            }else{
+                model.addAttribute("user", new User());
             }
             return "index";
         }
