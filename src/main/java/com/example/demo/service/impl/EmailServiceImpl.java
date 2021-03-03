@@ -86,6 +86,5 @@ public class EmailServiceImpl implements EmailService {
 
         // Send Message!
         javaMailSender.send(message);
-        System.out.println("send email template engine....");
     }
 }

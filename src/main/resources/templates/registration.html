@@ -7,6 +7,49 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
+
+    <script>
+
+            // Function to check Whether both passwords
+            // is same or not.
+            function checkPassword(form) {
+                password1 = form.password.value;
+                password2 = form.password2.value;
+
+                // If password not entered
+                if (password1 == '')
+                    alert ("Please enter Password");
+
+                // If confirm password not entered
+                else if (password2 == '')
+                    alert ("Please enter confirm password");
+
+                // If Not same return False.
+                else if (password1 != password2) {
+                    alert ("\nPassword did not match: Please try again...")
+                    return false;
+                }
+
+                // If same return True.
+                else{
+                    alert("Password Match")
+                    return true;
+                }
+            }
+        </script>
+    <style>
+            .gfg {
+                font-size:40px;
+                color:green;
+                font-weight:bold;
+                text-align:center;
+            }
+            .geeks {
+                font-size:17px;
+                text-align:center;
+                margin-bottom:20px;
+            }
+        </style>
 </head>
 <body>
 
@@ -27,7 +70,7 @@
 
             <h1>Đăng ký</h1>
 
-            <form th:action="@{/registration}" method="post" th:object="${user}">
+            <form th:action="@{/registration}" onSubmit = "return checkPassword(this)" method="post" th:object="${user}">
 
                 <div class="form-group">
                     <label class="control-label" for="fullname"> Full Name </label> <input
@@ -42,10 +85,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="password"> Password </label> <input
-                        id="password" class="form-control" type="password"
+                    <label class="control-label" for="password"> Password </label>
+                    <input
+                        id="password" name="password" placeholder="Enter your new password" class="form-control" type="password"
                         th:field="*{password}" required autofocus="autofocus" />
                 </div>
+
+                <p>
+                    <input type="password" name="password2" id="confirm-password" class="form-control"
+                           placeholder="Confirm your new password" required autofocus />
+                </p>
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Đăng ký</button>
