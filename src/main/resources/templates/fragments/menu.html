@@ -89,7 +89,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a th:text="#{label.menu.logout}" th:href="@{~/login}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                 </ul>
-                <p th:text="#{label.menu.hello}" class="navbar-brand navbar-right">Xin chào <span th:text="${user.fullname}"> User</span></p>
+                <p th:text="${user.fullname}" class="navbar-brand navbar-right"> User</p>
+                <p th:text="#{label.menu.hello}" class="navbar-brand navbar-right">Xin chào </p>
                 <p class="navbar-brand navbar-right">   </p>
             </div>
 

@@ -30,7 +30,7 @@
             <p th:text="${tag.name}"></p>
         </span>
         <div>
-            <a th:href="@{/post/{id}(id=${post.id})}" class="card-link">See more...</a>
+            <a th:text="#{label.menu.post.see-more}" th:href="@{/post/{id}(id=${post.id})}" class="card-link">See more...</a>
         </div>
 
     </div>

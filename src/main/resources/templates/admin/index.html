@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin</title>
+    <title th:text="#{label.admin.menu.title}">Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,7 +15,7 @@
 <body>
 <div th:replace="/../fragments/header :: header"> </div>
 <div th:replace="/../fragments/admin_menu :: admin_menu"> </div>
-<h1>Day la trang admin</h1>
+<h1 style="text-align:center" th:text="#{label.admin.menu.title}">Admin page</h1>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
@@ -23,9 +23,9 @@
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Fullname</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Post</th>
+                    <th th:text="#{label.admin.index.fullname }" scope="col">Fullname</th>
+                    <th th:text="#{label.admin.index.email }" scope="col">Email</th>
+                    <th th:text="#{label.admin.index.post }" scope="col">Post</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -85,7 +85,7 @@
             },
             axisX: {
                 categoricalValues: [
-                    "N5 ", "N4 ", "N3 ", "N2 ", "N1 ", "Tiếng nhật IT ", "Java cơ bản ", "Spring Boot"
+                    "N5 ", "N4 ", "N3 ", "N2 ", "N1 ", "IT-Japanese ", "Java Basic ", "Spring Boot"
                 ]
             },
             primaryHeader: {

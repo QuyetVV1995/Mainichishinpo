@@ -43,8 +43,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setUserDetailsService(userService);
-        auth.setPasswordEncoder(passwordEncoder());
+        auth.setUserDetailsService(userService);        // tìm kiếm người dùng
+        auth.setPasswordEncoder(passwordEncoder());     // mã hóa, so sánh password
         return auth;
     }
 

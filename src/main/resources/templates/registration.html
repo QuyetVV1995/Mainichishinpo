@@ -68,37 +68,40 @@
                 </div>
             </div>
 
-            <h1>Đăng ký</h1>
+            <h1 th:text="#{label.registration.title }">Đăng ký</h1>
 
             <form th:action="@{/registration}" onSubmit = "return checkPassword(this)" method="post" th:object="${user}">
 
                 <div class="form-group">
-                    <label class="control-label" for="fullname"> Full Name </label> <input
-                        id="fullname" class="form-control" th:field="*{fullname}"
-                        required autofocus="autofocus" />
+                    <label th:text="#{label.registration.fullname}" class="control-label" for="fullname"> Full Name </label>
+                    <input id="fullname" class="form-control" th:field="*{fullname}"
+                           th:placeholder="#{label.registration.fullname.placeholder}" required autofocus="autofocus" />
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="email"> Email </label> <input
+                    <label th:text="#{label.registration.email}" class="control-label" for="email"> Email </label> <input
                         id="email" class="form-control" th:field="*{email}" required
+                        th="#{label.registration.email.placeholder}"
                         autofocus="autofocus" />
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="password"> Password </label>
+                    <label th:text="#{label.registration.password}" class="control-label" for="password"> Password </label>
                     <input
-                        id="password" name="password" placeholder="Enter your new password" class="form-control" type="password"
+                        id="password" name="password" th:placeholder="#{label.registration.password.placeholder}" class="form-control" type="password"
                         th:field="*{password}" required autofocus="autofocus" />
                 </div>
 
                 <p>
                     <input type="password" name="password2" id="confirm-password" class="form-control"
-                           placeholder="Confirm your new password" required autofocus />
+                           th:placeholder="#{label.registration.confirm-password.placeholder}" required autofocus />
                 </p>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Đăng ký</button>
-                    <span>Đã có tài khoản ? <a href="/" th:href="@{/login}">Đăng nhập</a></span>
+                    <button th:text="#{label.registration.button}" type="submit" class="btn btn-success">Đăng ký</button>
+                    <span th:text="#{label.registration.text}">Đã có tài khoản? </span>
+                        <a th:text="#{label.registration.link.login}" th:href="@{/login}">Đăng nhập</a>
+
                 </div>
             </form>
         </div>

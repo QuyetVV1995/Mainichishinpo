@@ -15,13 +15,13 @@
 
 <div class="container">
     <div class="row mt-5 justify-content-center">
-        <h2> Ket qua tim kiem</h2>
+        <h2 th:text="#{label.search-result}"> Ket qua tim kiem</h2>
         <div class="card mx-2 mb-3" style="max-width: 300px;" th:each="post: ${posts}">
             <div class="card-body">
                 <h5 class="card-title" th:text="${post.title}"></h5>
                 <h6 class="card-subtitle mb-2 text-muted" th:text="${post.getUser().getFullname()}">Card subtitle</h6>
                 <p class="card-text" th:text="${#strings.abbreviate(post.content, 100)}">content</p>
-                <a th:href="@{/post/{id}(id=${post.id})}" class="card-link">See more...</a>
+                <a th:text="#{label.menu.post.see-more}" th:href="@{/post/{id}(id=${post.id})}" class="card-link">See more...</a>
             </div>
         </div>
     </div>

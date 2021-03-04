@@ -8,7 +8,7 @@
 <div th:replace="fragments/header :: header"> </div>
 
 <p th:text="${message}"></p>
-<a th:href="@{/login}"> Quay lại trang chủ  </a>
+<a th:text="#{label.message.content}" th:href="@{/login}"> Quay lại trang chủ  </a>
 
 </body>
 </html>
