@@ -30,16 +30,18 @@ public class TagController {
     public String getPostByTag(@PathVariable("id") Long id, Model model){
         Optional<Tag> optionalTag = tagService.findById(id);
         model.addAttribute("searchRequest", new SearchRequest());
-        User user = userService.findbyEmail(userService.getUsername()).get();
-        model.addAttribute("user", user);
         if(optionalTag.isPresent()){
             Tag tag = optionalTag.get();
             List<Post> posts = tag.getPosts();
             model.addAttribute("posts", posts);
-            return "postOfTag";
-
-        }else {
-            return "error";
+            Optional<User> optionalUser = userService.findbyEmail(userService.getUsername());
+            if(optionalUser.isPresent()){
+                User user = optionalUser.get();
+                model.addAttribute("user", user);
+            }else{
+                model.addAttribute("user", new User());
+            }
         }
+        return "postOfTag";
     }
 }

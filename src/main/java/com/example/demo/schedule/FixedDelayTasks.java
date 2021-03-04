@@ -9,7 +9,7 @@ import java.util.Random;
 
 @Component
 @EnableScheduling  //Đánh dấu đấy là component chứa tác vụ định thời
-@ConditionalOnExpression("true")  //"true": Nạp component này vào ApplicationContext. "false": không nạp, hoặc vô hiệu hoá class này
+@ConditionalOnExpression("false")  //"true": Nạp component này vào ApplicationContext. "false": không nạp, hoặc vô hiệu hoá class này
 public class FixedDelayTasks {
     private long timeOfLastTask = System.currentTimeMillis();
 

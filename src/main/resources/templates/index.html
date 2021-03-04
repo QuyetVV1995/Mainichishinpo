@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" lang="en">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
 <head>
     <meta charset="UTF-8">
     <title>Trang chu</title>
@@ -15,12 +15,10 @@
 <body>
 <div th:replace="fragments/header :: header"> </div>
 <div th:replace="fragments/menu :: menu"> </div>
-
 <!-- Layout Post -->
 <div class="container-fluid text-center">
     <div class="row">
 <!--    Get All Post-->
-
             <div class="col-sm-4" th:each="post:${listPost}">
                 <img th:src="@{images/N3.jpeg}" alt="image not found"/>
                 <p class="card-text" th:utext="${#strings.abbreviate(post.content, 100)}">content</p>
@@ -31,7 +29,7 @@
                     <span class="me-2" th:text="${post.comments.size}"></span>
                 </div>
                 <div>
-                    <a th:href="@{/post/{id}(id=${post.id})}" class="card-link">See more...</a>
+                    <a th:text="#{label.menu.post.see-more}" th:href="@{/post/{id}(id=${post.id})}" class="card-link">See more...</a>
                 </div>
             </div>
 </div>
@@ -39,7 +37,9 @@
 <div class="container-fluid text-center">
     <nav>
         <ul class="pagination">
-            <li class="page-item" th:each="paging : ${pagings}" th:classappend="${paging.active}"><a class="page-link" th:href="${'/' + paging.index}" th:text="${paging.title}"></a></li>
+            <li class="page-item" th:each="paging : ${pagings}" th:classappend="${paging.active}">
+                <a class="page-link" th:href="${'/' + paging.index}" th:text="${paging.title}"></a>
+            </li>
         </ul>
     </nav>
 </div>

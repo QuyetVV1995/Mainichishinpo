@@ -50,6 +50,7 @@ public class PostController {
                 User user = optionalUser.get();
                 model.addAttribute("user", user);
             } else{
+                model.addAttribute("user", new User());
                 model.addAttribute("commentRequest", new CommentRequest());
             }
             return "post_detail";
@@ -58,6 +59,7 @@ public class PostController {
         }
     }
 
+    // Lay tat ca cac bai viet cua User
     @GetMapping("/posts/{id}")
     public String getAllPostOfUser(@PathVariable("id") long id, Model model){
         Optional<User> optionalUser = userService.findById(id);

@@ -21,3 +21,4 @@ thứ tự thực hiện:
 - Docker, docker-compose
 - Email: verification new account,,forgot password
 - Schedule: https://github.com/TechMaster/SpringBootBasic/tree/main/schedule/01Basic/demoschedule
+- i18n: https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#b%C6%B0%E1%BB%9Bc-2-c%E1%BA%A5u-h%C3%ACnh-localeresolver

@@ -63,8 +63,8 @@
 
             <!-- success message -->
             <div th:if="${param.success}">
-                <div class="alert alert-info">You have signed up successfully!
-                    <p>Please check your email to verify your account.</p>
+                <div th:text="#{label.registration.success}" class="alert alert-info">You have signed up successfully!
+                  Please check your email to verify your account.
                 </div>
             </div>
 

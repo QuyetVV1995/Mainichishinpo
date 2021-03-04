@@ -9,6 +9,8 @@ import com.example.demo.service.PostService;
 import com.example.demo.service.TagService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,6 +33,7 @@ public class HomeController {
     private UserService userService;
     @Autowired
     private TagService tagService;
+
 
     @GetMapping(value = {"/", "/{page}"})
     public String homepage(@PathVariable(value="page", required = false) Integer page, Model model){
@@ -87,6 +90,7 @@ public class HomeController {
             return "index";
         }
     }
+
 
     @GetMapping("/login")
     public String login() {
