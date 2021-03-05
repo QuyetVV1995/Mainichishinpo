@@ -5,7 +5,9 @@ create table user(
 id bigint not null primary key auto_increment,
 email varchar(255) not null,
 fullname varchar(255),
-password varchar(255)
+password varchar(255),
+verificationCode varchar(64),
+enable boolean
 );
 create table role(
 id bigint not null primary key auto_increment,
@@ -138,7 +140,9 @@ select * from post_tag where post_tag.tag_id = 10;
 
 alter table post drop column is_admin;
 
-delete from post where id = 2;
+delete from users_roles where id = 11;
+delete from comment where user_id = 11;
+delete from user where id = 11;
 
 
 
