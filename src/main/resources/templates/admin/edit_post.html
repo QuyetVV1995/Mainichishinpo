@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit post</title>
+    <title th:text="#{label.admin.edit-post.title}">Edit post</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -22,11 +22,11 @@
     <div class="row">
         <div class="container-fluid ">
 
-            <h1>Edit post</h1>
+            <h1 th:text="#{label.admin.edit-post.title}">Edit post</h1>
             <form th:action="@{/admin/post/save-post}" enctype="multipart/form-data" method="post" th:object="${newPost}">
                 <input type="hidden" th:field="*{id}">
                 <div class="form-group">
-                    <label for="title">Title:</label>
+                    <label th:text="#{label.admin.edit-post.title-of-post}" for="title">Title:</label>
                     <input type="text" id="title" placeholder="Title" autocomplete="off" class="form-control"
                            th:field="*{title}"/>
                 </div>
@@ -37,18 +37,18 @@
                     <label class="checkbox-inline" for="${tag.id}" th:text="${tag.name}"></label>
                 </div>
                 <div class="form-group">
-                    <label for="content">Content:</label>
+                    <label th:text="#{label.admin.edit-post.content}" for="content">Content:</label>
                     <textarea type="textarea" style="height:500px;" id="content" placeholder="Content" class="form-control"
                               th:field="*{content}" autocomplete="off"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" > Choose File: </label>
+                    <label th:text="#{label.admin.edit-post.choose-file}" class="control-label" > Choose File: </label>
                     <input type="file" id="photos"  name="photos" multiple th:field="*{file}" />
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button th:text="#{label.admin.edit-post.button}" type="submit" class="btn btn-success">Submit</button>
                 </div>
             </form>
         </div>
