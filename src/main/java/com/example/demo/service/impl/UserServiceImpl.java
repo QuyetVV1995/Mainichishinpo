@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(UserDto registrationDto) {
         User user = new User(registrationDto.getFullname(), registrationDto.getEmail(),
-                passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")));
+                passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_AUTHOR")));
         return userRepository.save(user);
     }
 
@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void register(UserDto userDto, String siteURL) throws UnsupportedEncodingException, MessagingException {
 
-        User user = new User(userDto.getFullname(),userDto.getEmail(),passwordEncoder.encode(userDto.getPassword()),Arrays.asList(new Role("ROLE_USER")));
+        User user = new User(userDto.getFullname(),userDto.getEmail(),passwordEncoder.encode(userDto.getPassword()),Arrays.asList(new Role("ROLE_AUTHOR")));
 
         String randomCode = RandomString.make(64);
         user.setVerificationCode(randomCode);

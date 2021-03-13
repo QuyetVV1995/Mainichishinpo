@@ -38,7 +38,8 @@
                 <div class="form-group">
                     <label th:text="#{label.admin.edit-user.role}" class="control-label" for="role"> Role </label>
                     <select name="cars" id="role" th:field="*{roles}">
-                        <option value="ROLE_USER">USER</option>
+                        <option value="ROLE_USER">AUTHOR</option>
+                        <option value="ROLE_ADMIN">EDITOR</option>
                         <option value="ROLE_ADMIN">ADMIN</option>
                     </select>
                 </div>

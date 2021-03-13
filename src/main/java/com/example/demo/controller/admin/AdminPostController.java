@@ -1,7 +1,9 @@
 package com.example.demo.controller.admin;
 
+import com.example.demo.controller.request.CommentRequest;
 import com.example.demo.controller.request.PostRequest;
 import com.example.demo.controller.request.SearchRequest;
+import com.example.demo.entity.Comment;
 import com.example.demo.entity.Post;
 import com.example.demo.entity.Tag;
 import com.example.demo.entity.User;
@@ -104,6 +106,17 @@ public class AdminPostController {
         model.addAttribute("post", post);
         Set<Tag> tagList = post.getTags();
         model.addAttribute("tagList", tagList);
+
+        List<Comment> comments = post.getComments();
+        model.addAttribute("comments", comments);
+
+        // create new comment
+        if(optionalUser.isPresent()){
+            model.addAttribute("commentRequestAdmin", new CommentRequest(post.getId()));
+        } else{
+            model.addAttribute("commentRequestAdmin", new CommentRequest());
+        }
+
         return "/admin/post_view";
     }
 

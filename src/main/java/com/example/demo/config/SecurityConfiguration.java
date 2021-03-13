@@ -27,7 +27,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(
                 "/registration**", "/","/post/**","/search/**").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/", "/admin/manage-post/**", "/admin/comment/").hasAnyRole("EDITOR","ADMIN")
+                .antMatchers("/admin/manage-user/**").hasRole("ADMIN")
+                .and().exceptionHandling().accessDeniedPage("/403")
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -39,6 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
                 .permitAll();
+
     }
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {

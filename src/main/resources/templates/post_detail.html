@@ -26,6 +26,15 @@
             <li><a th:href="${'/tag/' + tag.id}" th:text="${tag.name}">tag link</a></li>
     </ul>
     <p th:utext="${post.content}" class="mt-2"></p>
+
+<!--    Edit and Delete of Post By owner-->
+    <span th:if="${post.user.email} == ${user.email}">
+    <a th:href="@{/posts/edit/{id}(id=${post.id})}"><i class="fa fa-edit" style="font-size: 3em;" aria-hidden="true"></i></a>
+    <a th:href="@{/posts/delete/{id}(id=${post.id})}"><i class="fa fa-trash" style="font-size: 3em;" aria-hidden="true"></i></a>
+     </span>
+
+
+
 <!--    Comment-->
     <div class="row">
         <div  th:each="comment:${comments}">

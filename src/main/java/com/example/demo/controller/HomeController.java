@@ -41,7 +41,8 @@ public class HomeController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("searchRequest", new SearchRequest());
 
-        if(auth.getAuthorities().stream().anyMatch(ga -> ga.getAuthority().equals("ROLE_ADMIN"))){
+        if(auth.getAuthorities().stream().anyMatch(ga -> ga.getAuthority().equals("ROLE_ADMIN"))
+            || auth.getAuthorities().stream().anyMatch(ga -> ga.getAuthority().equals("ROLE_EDITOR"))    ){
             if (optionalUser.isPresent()) {
 
                 User user = optionalUser.get();
@@ -95,5 +96,10 @@ public class HomeController {
     @GetMapping("/login")
     public String login() {
         return "login";
+    }
+
+    @GetMapping("/403")
+    public String error403(){
+        return "403Page";
     }
 }
